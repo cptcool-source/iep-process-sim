@@ -54,7 +54,7 @@ data.js / simulated-data.js  (the canonical datasets)
 |---|---|---|
 | **Home** (`index.html`) | Landing page: a real quote pulled live from Simulated ("Show another" cycles all of them), then three cards into the tracks below | Card stats computed live from `data.js`/`simulated-data.js` |
 | **Simulated** (`simulated.html`) — primary evidence tier | 10 real pain points, 15 real sources, 10 categories | Scheduled ingestion (monthly) + growth counter, recent-added feed, NEW badges |
-| **Cited** (`cited.html`) — secondary evidence tier | 8 real adjudicated cases, 8 categories | Scheduled ingestion (monthly) — growth-tracking UI not built yet |
+| **Cited** (`cited.html`) — secondary evidence tier | 15 real adjudicated cases, 11 categories (4 categories now have 2 real cases each, live via the case-switcher UI) | Scheduled ingestion (monthly) — growth-tracking UI not built yet |
 | **Playbook** (`playbook.html`) | 16 sourced callouts across 4 phases (Before/During/After/If You Disagree), benchmarked against real existing IEP guides | Hand-authored, not yet synced live to the two datasets |
 
 Full build-by-build detail, every source, and every design decision behind each phase is in "Build history" below — this table is just the current snapshot.
@@ -72,7 +72,7 @@ Organized against the mission's three clauses, not just a flat backlog.
 
 ### Toward continuously, systematically improving the IEP process
 
-- **Fill the known case-law gap** — five original safeguard categories never got real case-law backing: Records Access, Confidentiality, Informed Consent, Understandable Language, Independent Educational Evaluation. Every scheduled scan actively checks for these, not just waits for them to turn up.
+- **Fill the known case-law gap, then keep growing every category** — five original safeguard categories never got real case-law backing. As of Phase 1k, three are filled (Understandable Language, Independent Educational Evaluation, Records Access); Confidentiality and standalone Informed Consent remain open (see `CITED-INGESTION-RUNBOOK.md`'s "Known gap" section for what's been tried and ruled out). Every scheduled scan actively checks for these first. Beyond that, the goal isn't "one case per category and done" — as of Phase 1i the site supports multiple real cases per category with a case-switcher UI, and four categories (stayput, child-find, understandable-language, iee) now actually have a second real case live. Target is roughly 2-3 real cases per category over time, gaps prioritized first.
 - **Plan / document quality track (Phase 2)** — a second dimension entirely: is the *written IEP* any good (measurable goals, present-levels-to-goals alignment, services matched to needs), not just whether the *meeting* was run fairly. Needs different sources than case law — published IEP-quality rubrics and real weak-goal/strong-goal pairs from teacher-training material.
 - **Legal domains deliberately excluded from the process track, kept for later (possibly their own tracks):** FAPE standard (*Endrew F. v. Douglas County*, *Rowley*), LRE/methodology disputes (*M.C. v. Antelope Valley*, *G. v. Fort Bragg*), related services (*Irving ISD v. Tatro*, *Cedar Rapids v. Garret F.*), restraint/seclusion/abuse (*HH v. Moffett*, *Connecticut OPA v. Hartford*), Section 504/ADA overlap (*Fry v. Napoleon*, *KM v. Tustin*), attorneys' fees (*Arlington Central SD v. Murphy*).
 - **Regenerating / multi-tone simulations** — not just 2-3 alternate scripted dramatizations per condition, but a real spread of different tones/communication styles (blunt/direct vs. diplomatic vs. clinical/formal vs. plain conversational), so a reader who doesn't connect with the first dramatization might connect with a differently-toned one. Wanted for all pain points eventually. Blocked on: live in-browser regeneration needs either an exposed API key (real abuse/cost risk on a public site) or a backend proxy — the realistic path is pre-authoring multiple tone variants during ingestion/review, same human-gated process as everything else, built for new pain points going forward and backfilled later rather than all at once.
@@ -307,6 +307,49 @@ parents/families only).
 Notification config: email only (`bspivey212@gmail.com`) — push was tried first, then turned off since push delivery depends on device/app setup that couldn't be verified from here; email was confirmed as the reliable channel.
 </details>
 
+<details>
+<summary>Phase 1i — built (multiple real cases per category, Cited)</summary>
+
+**Why:** the case-law goal had been framed as "one case fills the gap and it's done" — but a single case per category means a reader whose specific situation doesn't match that one case has nothing else to compare against. Reframed the goal: every category should grow toward several real cases over time, with a way to browse between them.
+
+**What was built:** `data.js`'s schema already supported this with zero changes — `EPISODES` never enforced one-episode-per-category, that was just a coincidence of the data so far. The actual work was in `app.js`: the sidebar (`renderEpisodeList`) now lists one row per *category* instead of one row per episode, showing a case-count hint when a category has more than one; picking a category jumps to its first case; a new case-switcher ("Case N of M for this category — Try another real case") appears above the Case File/Reenactment content whenever the active category has more than one real case, cycling through them via the existing `selectEpisode` so both views stay in sync exactly like switching episodes always has. `CITED-INGESTION-RUNBOOK.md` updated to reflect the new priority order (zero-coverage gaps first, then existing single-case categories, then genuinely new categories) and to record source leads for state-level due-process hearing decision databases — a better fit than federal circuit opinions for procedural/meeting-conduct volume, since those disputes are decided at the hearing-officer level far more often than they reach a court.
+
+**Known gap:** the actual case-law content still needs to be found and reviewed — this phase built the mechanism, not new episodes. `cited-pending-review.md` is the next step, following the runbook.
+</details>
+
+<details>
+<summary>Phase 1j — built (first real gap-category cases merged, source-type scope rule established)</summary>
+
+**Why:** Phase 1i built the mechanism; this phase actually ran a research pass against the source leads it recorded, targeting the five zero-coverage categories first.
+
+**What was found and merged:** two real cases, each fetched and validated against primary or directly-litigating sources (not search snippets) —
+- **Understandable Language** — `understandable-language-bellflower`: a California OAH decision (Case No. 2016100887) finding a district's failure to translate IEP documents or provide an adequate interpreter meant a mother's consent "could not reasonably have been interpreted to have been, informed." Also substantively fills Informed Consent, though it's tagged to Understandable Language only for now.
+- **Independent Educational Evaluation** — `iee-ycq`: *Y.C.Q. v. Chichester School District*, a Pennsylvania case where a hearing officer ordered the district to fund an IEE and build an IEP after the district was found to have unlawfully denied services; the district's refusal to comply escalated to state enforcement.
+
+**What was caught and rejected:** one lead ("Sandra S. v. Upper Darby School District," surfaced by a web-search tool's own synthesized summary) could not be verified against CourtListener's actual case database and was dropped as a likely hallucination — documented in `cited-pending-review.md`'s "Not found this pass" section as a caution for future scans. One real candidate (Colorado State-Level Complaint 2024:515, for Confidentiality) was reviewed and rejected specifically because it came from a state-complaint investigation rather than a due-process hearing or court ruling — every existing Cited episode is hearing/court-sourced, and this was the first time a different source type came up. That review established a standing rule, now in `CITED-INGESTION-RUNBOOK.md`'s "Source-type scope" section: non-hearing/non-court candidates must always be flagged separately for an explicit human decision, never merged as a normal candidate.
+
+**Still open:** Records Access, Confidentiality (hearing/court-sourced), and a standalone Informed Consent case.
+</details>
+
+<details>
+<summary>Phase 1k — built (second cases for existing categories, three parallel research forks)</summary>
+
+**Why:** Phase 1j proved the mechanism and content pipeline work end to end. This phase pushed on breadth — giving already-covered categories a genuine second real case, so the case-switcher UI built in Phase 1i actually has something to switch to.
+
+**What was found and merged:** five real cases, split across three parallel research passes (predetermination/missing-member/participation; due-process/stayput/child-find; retaliation/burden-of-proof/understandable-language/iee), each independently verified against a primary source before being trusted —
+- **Records Access** (zero-coverage gap, finally filled) — `records-access-amandaj`: *Amanda J. v. Clark County School District*, a district withholding a two-page summary instead of the full evaluation records that would have disclosed its own evaluators' autism findings. Found as an unprompted cross-referral: two of the three research forks, working independently, both flagged this same case as a better fit for Records Access than the category they were actually assigned.
+- **Stay-Put** (2nd case) — `stayput-ridley`: *M.R. v. Ridley School District*, holding stay-put funding obligations extend through the full appeals process, not just the first ruling.
+- **Child Find** (2nd case) — `childfind-matula`: *W.B. v. Matula*, holding a district can't run out the clock on Child Find by ignoring repeated parent requests.
+- **Understandable Language** (2nd case) — `understandable-language-chicago`: *H.P. v. Board of Education of the City of Chicago*, a class action over a district-wide pattern of unverified ad hoc interpreters.
+- **Independent Educational Evaluation** (2nd case) — `iee-altaloma`: a California OAH decision showing the flip side of `iee-ycq` — a district that responded to an IEE request correctly.
+
+**What was found but not merged:** a predetermination lead (*H.B. v. Las Virgenes*, 9th Cir. 2007) had its legal holding verified but not its underlying facts, so it wasn't drafted into a full episode — flagged in `cited-pending-review.md` for whoever picks it up next.
+
+**Verification discipline, now codified:** three hallucinated citations were caught and dropped across this phase and Phase 1j combined — all from AI-search-tool synthesized summaries, none from primary-source fetches. `CITED-INGESTION-RUNBOOK.md` now has a standing "Verification discipline" step requiring every candidate be checked against a primary source or independently cross-corroborated before being written up, not trusted from a single search summary.
+
+**Still open:** Confidentiality (hearing/court-sourced), standalone Informed Consent, and second cases for predetermination, missing-member, due-process, retaliation, and burden-of-proof.
+</details>
+
 ## Sources
 
 **Phase 1a (superseded):**
@@ -322,6 +365,13 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 - *Phyllene W. v. Huntsville City Board of Education*, [11th Cir. (2015)](https://law.justia.com/cases/federal/appellate-courts/ca11/15-10123/15-10123-2015-10-30.html)
 - *A.C. v. Shelby County Board of Education*, [6th Cir. (2013)](https://www.wrightslaw.com/law/caselaw/2013/case.6th.cir.504retaliation.original.pdf)
 - *Schaffer v. Weast*, [546 U.S. 49 (2005)](https://supreme.justia.com/cases/federal/us/546/49/)
+- *Parent on Behalf of Student v. Bellflower Unified School District*, [Cal. OAH Case No. 2016100887 (2017)](https://www.californiaspecialedlaw.com/hearing-decisions/oah-2016100887/) — Understandable Language / Informed Consent
+- *Y.C.Q. v. Chichester School District*, Pennsylvania due-process hearing decisions, [case summary via Education Law Center PA](https://www.elc-pa.org/cases/y-c-q-v-chichester-school-district/) — Independent Educational Evaluation
+- *Amanda J. v. Clark County School District*, [267 F.3d 877 (9th Cir. 2001)](https://caselaw.findlaw.com/court/us-9th-circuit/1281824.html) — Records Access
+- *M.R. v. Ridley School District*, [868 F.3d 218 (3d Cir. 2017)](https://law.justia.com/cases/federal/appellate-courts/ca3/16-2465/16-2465-2017-08-22.html) — Stay-Put
+- *W.B. v. Matula*, [67 F.3d 484 (3d Cir. 1995)](https://law.justia.com/cases/federal/appellate-courts/F3/67/484/587547/) — Child Find
+- *H.P. v. Board of Education of the City of Chicago*, [385 F. Supp. 3d 623 (N.D. Ill. 2019)](https://law.justia.com/cases/federal/district-courts/illinois/ilndce/1:2018cv00621/348621/94/) — Understandable Language
+- Alta Loma School District IEE dispute, [Cal. OAH Case No. 2017120979 (2019)](https://www.dgs.ca.gov/OAH/Case-Types/Special-Education/Services/-/media/Divisions/OAH/Special-Education/SE-Decisions/2019/2019---November/2017120979AfterPartialRemandAcc.pdf) — Independent Educational Evaluation
 - Wrightslaw, [Special Education Caselaw](https://www.wrightslaw.com/caselaw.htm) (case index used to find the above)
 - Texas ILC, [Examples of Common Due Process Issues](https://txilc.org/wp-content/uploads/2025/02/2.-Examples-of-Due-Process-Issues-1-of-2-1.pdf)
 - IDEA team-role requirements: 20 U.S.C. section 1414(d)(1)(B) / 34 CFR 300.321
@@ -330,6 +380,14 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 - Understood.org, [Our community weighs in: Crying at IEP meetings](https://www.understood.org/en/articles/our-community-weighs-in-crying-at-iep-meetings) (aggregate/anonymized)
 - Center for Parent Information and Resources, ["Is an Interpreter Needed at the IEP Meeting?"](https://www.parentcenterhub.org/interpreter/) (federally-funded, OSEP)
 - Sanderson et al., "Parent Perspectives on Student IEP Involvement," *Journal of Research in Special Educational Needs* (2023)
+
+**Source leads for expanding Cited (identified Phase 1i, not yet used as case sources):**
+- Pennsylvania Office for Dispute Resolution, [Hearing Officer Decisions](https://odr-pa.org/due-process/hearing-officer-decisions/) — full-text searchable since 2006
+- New York Office of State Review, [Decision Search](https://www.sro.nysed.gov/decision-search)
+- California Office of Administrative Hearings, [Search Special Education Decisions and Orders](https://www.dgs.ca.gov/OAH/Case-Types/Special-Education/Services/Page-Content/Special-Education-Services-List-Folder/Search-Special-Education-Decisions-and-Orders) — since 2013
+- Massachusetts Bureau of Special Education Appeals, [Decisions and Rulings](https://www.mass.gov/bsea-decisions-and-rulings)
+- CADRE (Center for Appropriate Dispute Resolution in Special Education, OSEP-funded), [cadreworks.org](https://cadreworks.org/) — index of other states' dispute-resolution systems
+- CourtListener / Free Law Project, [courtlistener.com](https://www.courtlistener.com/) — real search API and bulk data downloads for federal case law
 
 **Agentic architecture research (informs "The pipeline" above):**
 - Anthropic, [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) — orchestrator-worker pattern, evaluation strategy, compound-error warnings

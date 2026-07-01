@@ -18,6 +18,23 @@ this file is what the scheduled agent actually follows each time it fires.
    Section 504/ADA, or attorneys' fees is real but out of scope for this
    track — flag it for the Phase 2 (plan/document quality) or "down the
    road" tracks instead, the same way the original Phase 1b research did.
+
+   **Verification discipline — never skip this, it has caught real problems.**
+   A web-search tool's own synthesized summary will sometimes confidently
+   describe a case — with a specific citation, court, and date — that does
+   not actually exist, or garbles a real case's name (e.g. into a
+   near-duplicate of one already in `data.js`). This has happened three times
+   across the first two research passes on this project (see
+   `cited-pending-review.md`'s "Hallucinated citations caught this session"
+   note for the specifics) — a real, recurring rate, not a one-off. Before
+   treating any case as real: either fetch the primary opinion/decision text
+   directly, or confirm it independently against a primary index (e.g.
+   CourtListener's REST API, an official court/agency site) — not just a
+   second search-tool summary, since those can echo the same hallucination.
+   If a case can't be verified this way, it does not go in
+   `cited-pending-review.md` as a candidate — write it up under a "not found"
+   / "could not verify" note instead, the same way every past instance of
+   this has been handled.
 3. **Extract** into the existing schema: category (an existing `CATEGORIES`
    id, or propose a new one — with a matching `CATEGORY_DESCRIPTIONS` entry —
    if it's a genuinely distinct procedural issue no current category covers),
@@ -37,6 +54,28 @@ this file is what the scheduled agent actually follows each time it fires.
    approve-with-edits, or reject. Only approved candidates get merged into
    `data.js`, by a separate explicit step.
 
+## Source-type scope: due-process hearings and courts by default
+
+Every existing Cited episode is sourced from a due-process hearing officer
+decision or a court ruling. That's the default and preferred source type —
+it's what "adjudicated" means for this track.
+
+If a scan turns up a strong candidate from a **different track** — a state
+formal-complaint investigation finding (SEA-level, not a due-process hearing),
+an OCR complaint resolution, or anything else that isn't a hearing officer or
+court decision — **do not treat it as a normal candidate.** Write it to
+`cited-pending-review.md` with an explicit `**Scope flag**` callout (see the
+Colorado State-Level Complaint 2024:515 candidate, reviewed 2026-07-01, for
+the format) explaining what track it's from and why it might still be a fit
+(e.g., confidentiality violations are often resolved via state complaint
+rather than due process, since there's frequently no live dispute to
+litigate — just a factual violation to find). This is not a blanket ban on
+non-hearing/non-court sources — it's a standing requirement that they always
+get flagged for a deliberate human decision, never silently merged like a
+normal candidate. The Colorado complaint above was reviewed under this
+process and rejected; that outcome doesn't retroactively ban the source type,
+but every future instance still needs its own explicit flag and decision.
+
 ## In scope / out of scope (unchanged from Phase 1b)
 
 **In scope** (meeting conduct / procedural safeguards): predetermination,
@@ -54,10 +93,61 @@ for out-of-scope finds) rather than silently dropping it.
 ## Known gap to actively check for
 
 Five categories from the original Phase 1a safeguards list never got
-case-law backing: Records Access, Confidentiality, Informed Consent,
-Understandable Language, Independent Educational Evaluation. Every scan
-should explicitly search for rulings on these five, not just wait for them
-to turn up incidentally.
+case-law backing. As of 2026-07-01, three are filled: Understandable Language
+(`understandable-language-bellflower`, `understandable-language-chicago`),
+Independent Educational Evaluation (`iee-ycq`, `iee-altaloma`), and Records
+Access (`records-access-amandaj` — found as an unprompted cross-referral
+while searching for a second `participation` case, not from a dedicated
+Records Access search; worth remembering that these categories aren't always
+found by searching for them directly). Two remain zero-coverage and are top
+priority — before growing categories that already have a case:
+
+- **Confidentiality** — one real candidate was found (Colorado State-Level
+  Complaint 2024:515) but rejected on review because it was state-complaint-
+  sourced, not a due-process hearing or court ruling (see "Source-type scope"
+  above). Still open for a hearing/court-sourced candidate.
+- **Informed Consent** (standalone) — the Understandable Language episodes
+  above substantively cover informed consent too (the Bellflower ALJ's
+  holding turns on consent not being informed), but if a fully separate case
+  is wanted — one where consent is the central issue independent of a
+  language barrier — none has been found yet.
+
+A predetermination lead (*H.B. v. Las Virgenes Unified School District*, 9th
+Cir. 2007) was found and its legal holding verified, but couldn't be merged
+as a second case for that category because the underlying facts couldn't be
+retrieved — see `cited-pending-review.md`'s "Found but not merge-ready"
+section. Worth revisiting if the full opinion turns up.
+
+## Multiple real cases per category (Phase 1i)
+
+As of Phase 1i, a category is not "done" once it has one case. The site
+supports multiple real cases per category with a case-switcher UI ("try
+another real case" for readers whose situation doesn't match the first one
+shown) — every category should keep growing toward several real cases over
+time, not just the single founding one. When proposing a candidate for
+`cited-pending-review.md`, it's fine (expected, even) for the proposed
+category to already exist in `data.js` with a case in it — that's not a
+duplicate, that's the target. Target roughly 2-3 real cases per category
+long-term; there's no need to hit that in one scan.
+
+Priority order for a given scan: (1) any of the five zero-coverage gap
+categories, (2) any existing category with only one case, (3) genuinely new
+categories if a scan turns up a real procedural issue none of the current
+categories cover.
+
+**Source leads for state-level due-process hearing decisions** (higher volume
+of procedural/meeting-conduct rulings than federal circuit opinions, since
+procedural-only disputes are decided at the hearing-officer level far more
+often than they reach a court): Pennsylvania ODR
+(https://odr-pa.org/due-process/hearing-officer-decisions/), New York SRO
+(https://www.sro.nysed.gov/decision-search), California OAH
+(https://www.dgs.ca.gov/OAH/Case-Types/Special-Education/Services/Page-Content/Special-Education-Services-List-Folder/Search-Special-Education-Decisions-and-Orders),
+Massachusetts BSEA (https://www.mass.gov/bsea-decisions-and-rulings). CADRE
+(https://cadreworks.org/) indexes other states' dispute-resolution systems
+for expanding beyond these four. For federal circuit-level cases (the same
+tier as the current 8 episodes), CourtListener
+(https://www.courtlistener.com/) has a real search API and bulk data
+downloads, not just a search page.
 
 ## cited-pending-review.md format
 

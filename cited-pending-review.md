@@ -5,6 +5,177 @@ Reply per-candidate: approve / approve-with-edits / reject.
 
 ---
 
-## Nothing pending yet
+## Resolved (2026-07-01)
 
-First scheduled scan hasn't run yet. See README.md for the trigger setup.
+- **Parent v. Bellflower Unified School District** (Understandable Language) — approved, merged into `data.js` as `understandable-language-bellflower`.
+- **Y.C.Q. v. Chichester School District** (IEE) — approved, merged into `data.js` as `iee-ycq`.
+- **Colorado State-Level Complaint 2024:515** (Confidentiality) — reviewed and **dropped**. This was the state-complaint-sourced candidate flagged for extra scrutiny since it wasn't a due-process hearing or court ruling like every other Cited episode. See the new "Source-type scope" section in `CITED-INGESTION-RUNBOOK.md` — this decision is now the standing precedent for how state-complaint-track candidates get handled going forward (always flagged separately, not auto-accepted; this one specifically didn't clear review).
+
+<details>
+<summary>Original candidate text (for the record)</summary>
+
+## CANDIDATE: Parent v. Bellflower Unified School District (OAH Case No. 2016100887)
+- Proposed category: NEW: "understandable-language" — "Understandable Language" — the school fails to communicate with a parent in a language and manner they can actually understand, undermining the rest of the process.
+- Citation: California Office of Administrative Hearings, Case No. 2016100887, ALJ Alexa J. Hohensee, hearing held May 17–19 and 25, 2017 in Bellflower, CA. https://www.californiaspecialedlaw.com/hearing-decisions/oah-2016100887/
+- Confidence: medium-high — facts below are corroborated identically across two independent search results that appear to be indexing the real decision text (ALJ name, exact hearing dates, exact document dates all match across sources). I could not fetch the source page directly (returned HTTP 403 in this session) to confirm word-for-word — recommend confirming full text before merging, e.g. via CA OAH's own DecisionBox archive noted in `CITED-INGESTION-RUNBOOK.md`.
+- Facts (paraphrased): The District knew Mother was a Spanish speaker with very limited English — she needed help completing English-language enrollment forms, made her initial written evaluation request in Spanish, and had documented difficulty communicating with staff in English. Despite this, the District never provided Spanish translations of three separate IEP documents (dated January 21, 2015; January 15, 2016; June 16, 2016), and failed to provide an interpreter — or ensure all necessary team members were present — at the June 16, 2016 IEP team meeting.
+- Rule/holding: The ALJ found the District significantly impeded Mother's opportunity to participate in the IEP process. Providing an interpreter at one brief meeting plus an English-only copy of the IEP did not give Mother the information necessary to understand and participate. On these facts, Mother's consent to the IEPs "was not, and could not reasonably have been interpreted to have been, informed."
+- Draft takeaway: Consent isn't "informed" just because a form got signed. If a parent genuinely can't read or understand the IEP in a language they know, an interpreter at one meeting plus an English-only document doesn't satisfy that — and it can undo the informed-consent basis for the whole plan.
+- Draft dramatization:
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We have an interpreter here for today's meeting, and I'll get you a copy of the IEP afterward." }
+  - { speaker: "Dana Reyes", role: "Parent", line: "The last two IEPs were only in English. I couldn't read them, and there was no one to explain what I was agreeing to." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "An interpreter for one meeting and an English-only document afterward isn't really enough for you to have understood what you signed.", tag: { id: "understandable-language", status: "violated" } }
+- Severity: high
+- Also directly relevant to: Informed Consent (another zero-coverage gap — the ALJ's holding turns explicitly on consent not being informed). Your call whether this episode should be tagged/cross-listed under both categories, or whether Informed Consent should wait for a case where language isn't the underlying cause.
+
+---
+
+## CANDIDATE: Y.C.Q. v. Chichester School District
+- Proposed category: NEW: "iee" — "Independent Educational Evaluation" — the school fails to honor a parent's right to an evaluation from an outside, independent evaluator at public expense.
+- Citation: Two Pennsylvania due-process hearing decisions, litigated by the Education Law Center of PA (ELC-PA). Case summary: https://www.elc-pa.org/cases/y-c-q-v-chichester-school-district/
+- Confidence: medium — the underlying orders are real (confirmed via ELC-PA, a real legal-aid organization describing its own litigation), but I could not independently locate the formal ODR hearing-officer decision number or date despite searching ODR's own decision database. This candidate is sourced from the litigating organization's case description, not the primary decision text — recommend tracking down the actual ODR decision number before merging, or treating ELC-PA's summary as the source if the primary text isn't publicly findable.
+- Facts (paraphrased): Y.C.Q., a high-school student in foster care and an English learner with a disability, had her IEE request effectively denied/delayed by Chichester School District. Following two due-process hearings, a hearing officer found Y.C.Q. had been unlawfully deprived of special education services and ordered the District to (1) pay for an independent educational evaluation and (2) create an IEP for her. The District refused to comply with either order and appealed both to the Third Circuit.
+- Rule/holding: When a hearing officer determines a district's own evaluation was inadequate, the district can be ordered to fund an IEE at public expense directly — and refusing to comply doesn't pause that obligation, it escalates into a state-enforcement matter.
+- Draft takeaway: If a district stalls or refuses an IEE request, a hearing officer can order the district to pay for one outright. And if the district still won't comply, that's an enforceable violation you can escalate — not a dead end.
+- Draft dramatization:
+  - { speaker: "Dana Reyes", role: "Parent", line: "I don't agree with the district's evaluation. I'm requesting an independent evaluation at public expense." }
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We'll take that under consideration and get back to you." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "Once you've made that request, the district has to either fund it or file for a hearing to defend its own evaluation without unnecessary delay — 'we'll consider it' isn't really a third option.", tag: { id: "iee", status: "violated" } }
+- Severity: high
+
+---
+
+## CANDIDATE: Colorado State-Level Complaint 2024:515
+- Proposed category: NEW: "confidentiality" — "Confidentiality" — a school discloses a child's protected information without parental consent.
+- Citation: Colorado Department of Education, State-Level Complaint 2024:515. https://www.cde.state.co.us/spedlaw/sc2024-515
+- Confidence: medium — the core fact (documentation left on the parent's porch) is corroborated via search-engine indexing of the actual decision PDF, but the PDF couldn't be rendered to plain text in this session to confirm full context, exact date, or the complete finding language. Recommend pulling the PDF directly before merging.
+- **Scope flag, needs a decision, not just a review:** this is a state-complaint investigation finding, not a due-process hearing or court ruling — a different track than every existing Cited episode and the other two candidates above. It's real, adjudicated, and citable, but `CITED-INGESTION-RUNBOOK.md` currently only describes hearing officer decisions and court rulings as the target format. Confidentiality violations in practice are usually resolved through the state-complaint track rather than due process (there's often no live "dispute" to litigate, just a factual violation to find), so state complaints may genuinely be the right source type for this category specifically. Recommend deciding whether to accept this format and updating the runbook's "What a scan does" step 1 accordingly if so.
+- Facts (paraphrased): A Colorado school district disclosed a student's personally identifiable information without parental consent by leaving documentation containing that information unattended on the parent's front porch.
+- Rule/holding: This is a violation of 34 C.F.R. § 300.622(a), which requires parental consent before personally identifiable information from education records is disclosed to anyone outside the participating agencies.
+- Draft takeaway: Confidentiality violations aren't only about a school telling the wrong person on purpose. Leaving paperwork with a child's disability-related information somewhere unsecured is itself a real, findable violation.
+- Draft dramatization:
+  - { speaker: "Dana Reyes", role: "Parent", line: "I found an envelope with his evaluation results just sitting on my porch when I got home — anyone could have picked it up." }
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "That should have been handed to you directly or mailed securely, not left out like that." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "That's a real confidentiality violation regardless of intent — his information has to be protected in how it's delivered, not just who it's addressed to.", tag: { id: "confidentiality", status: "violated" } }
+- Severity: medium
+
+---
+
+</details>
+
+---
+
+## Not found, round 1 (flagged, not candidates)
+
+- **Records Access** — multiple searches (PA ODR, NY SRO, CA OAH, MA BSEA, general web, CourtListener) surfaced only regulatory background, not a specific citable adjudicated case. One lead surfaced by an AI-search-tool summary — "Sandra S. v. Upper Darby School District," described as an E.D. Pa. case about a private cause of action for records-access denial — **could not be verified**: it does not appear in CourtListener's actual case database under that name, and follow-up searches turned up only unrelated Upper Darby litigation (B.M. v. Upper Darby, 3d Cir. 2024, and others). Treating this as a likely search-tool hallucination and explicitly flagging it so it doesn't get mistaken for verified. Next attempt should use PA ODR's and NY SRO's own full-text search directly for "records" as a phrase rather than general web search.
+- **Informed Consent (standalone)** — the Bellflower case above (OAH 2016100887) substantively covers this ground, but if a fully separate case is wanted — one where consent is the central issue independent of a language barrier — none was found and verified in this pass.
+
+---
+
+# Round 2 — second cases for already-covered categories (2026-07-01)
+
+Three parallel research passes, one per group of categories. Same rigor as round 1: every case below was independently verified against a primary source (CourtListener's API, an official court/agency site, or full opinion text) before being included — never trusted from a search-tool's summary alone.
+
+**Records Access finally has a real candidate** — not from the fork assigned to it (there wasn't one this round), but as an unprompted cross-referral: two of the three research forks, working independently on different category groups, both separately flagged the same real case as a better fit for Records Access than the category they were actually asked to fill. That kind of convergence from independent searches is a good signal, not a coincidence.
+
+## Resolved (2026-07-01) — all 5 candidates approved and merged
+
+- **Amanda J. v. Clark County School District** → `records-access-amandaj` (new category: Records Access)
+- **M.R. v. Ridley School District** → `stayput-ridley` (stayput, 2nd case)
+- **W.B. v. Matula** → `childfind-matula` (child-find, 2nd case)
+- **H.P. v. Board of Education of the City of Chicago** → `understandable-language-chicago` (understandable-language, 2nd case)
+- **Alta Loma School District IEE Delay Dispute** (OAH 2017120979) → `iee-altaloma` (iee, 2nd case)
+
+Four categories now have a real case-switcher live on the Cited page: stayput, child-find, understandable-language, and iee. The H.B. v. Las Virgenes predetermination lead was **not** part of this approval — it was explicitly flagged as found-but-not-merge-ready (missing concrete facts) and stays open, see "Found but not merge-ready" below.
+
+<details>
+<summary>Original candidate text (for the record)</summary>
+
+## CANDIDATE: Amanda J. v. Clark County School District
+- Proposed category: records-access — NEW: "Records Access" — the school withholds a parent's access to their child's own evaluation records, undermining everything downstream. (Originally proposed as a 2nd case for `participation`; redirecting here since the violation is specifically about withheld records, and Records Access is still a zero-coverage gap while `participation` already has one case.)
+- Citation: 267 F.3d 877 (9th Cir. 2001), Docket No. 99-17157. https://caselaw.findlaw.com/court/us-9th-circuit/1281824.html — full opinion fetched directly, not a search snippet.
+- Confidence: high.
+- Facts: The district evaluated a young child for developmental delays. Its own school psychologist and speech pathologist identified strong indicators of autism — the speech pathologist rated her "severely autistic" on diagnostic scales. When the parents requested her evaluation records, the district gave them only a two-page summary that omitted any mention of autism or a recommendation for psychiatric evaluation. The parents didn't see the full reports until months later, after moving out of state and requesting a file transfer.
+- Rule/holding: The Ninth Circuit held that withholding the complete evaluation records from the parents was itself a procedural IDEA violation — parents can't meaningfully participate in decisions about a child's disability if the district doesn't give them the full picture of what its own evaluators found. The court held this alone denied FAPE: "By failing to disclose [the child's] full records to her parents once they were requested... the District denied [her] a FAPE."
+- Draft takeaway: A two-page summary isn't the same as the actual evaluation. If a district's own evaluators found something significant and it doesn't show up in what you're handed, that's not just an incomplete file — it's the specific violation that can undo the process.
+- Draft dramatization:
+  - { speaker: "Dana Reyes", role: "Parent", line: "I requested her full evaluation file last week. This is only two pages — is that everything?" }
+  - { speaker: "Dr. Novak", role: "Evaluator", line: "That's a summary of the key findings, should be enough to go on for today's meeting." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "If there's more in the full evaluation than what's summarized here, she's entitled to see all of it before we make decisions based on it.", tag: { id: "records-access", status: "violated" } }
+- Severity: high
+
+## CANDIDATE: M.R. v. Ridley School District
+- Proposed category: stayput (existing category — 2nd case)
+- Citation: 868 F.3d 218 (3d Cir. 2017), Docket No. 16-2465. https://law.justia.com/cases/federal/appellate-courts/ca3/16-2465/16-2465-2017-08-22.html
+- Confidence: high — verified directly against CourtListener (exact citation, docket, judges) and corroborated by Justia, SCOTUSblog, and COPAA.
+- Facts (paraphrased): Parents enrolled their daughter in a private school and sought reimbursement; a hearing officer agreed in 2009 and set that private placement as her stay-put placement. The district appealed. By the time the Third Circuit ruled in 2012, it reversed on the underlying IEP claim — but the parents still sought reimbursement for the stay-put placement's cost for the entire period the appeal was pending, 2009–2012.
+- Rule/holding: The Third Circuit held IDEA's stay-put provision (20 U.S.C. § 1415(j)) extends through judicial appeals, not just administrative proceedings — the obligation to fund a child's stay-put placement continues through final resolution at every level, including the courts.
+- Draft takeaway: Stay-put doesn't expire when a case moves from a hearing officer to a courtroom. If a placement was your child's stay-put placement at the start of a dispute, the district's obligation to fund it can keep running through the entire appeals process, however long that takes.
+- Draft dramatization:
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "The hearing officer's stay-put order was from the original decision — now that we're appealing, our funding obligation is on hold until this is resolved." }
+  - { speaker: "Dana Reyes", role: "Parent", line: "That's not how I understood stay-put to work — I thought his placement stays funded the whole time this is being fought over." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "She's right — stay-put runs through the full appeals process, not just up to the first ruling. That funding doesn't pause because you're appealing.", tag: { id: "stayput", status: "violated" } }
+- Severity: medium
+
+## CANDIDATE: W.B. v. Matula
+- Proposed category: child-find (existing category — 2nd case)
+- Citation: 67 F.3d 484 (3d Cir. 1995), decided 1995-10-17. Indexed on CourtListener; 230+ citing cases, foundational precedent.
+- Confidence: high — verified directly against CourtListener.
+- Facts (paraphrased): Before her son entered first grade, a mother repeatedly raised concerns with school officials about his educational difficulties over many months, asking that he be evaluated. The school persistently refused to evaluate, classify, or provide any services.
+- Rule/holding: The Third Circuit held that damages are available under IDEA, Section 504, and Section 1983 when a district refuses to evaluate, classify, and serve a child despite a parent's repeated, documented requests — a district can't simply run out the clock on Child Find by ignoring a parent.
+- Draft takeaway: Child Find isn't satisfied by waiting the parent out. If you've raised the concern more than once and the school still won't evaluate, that pattern of refusal is itself actionable — not just an ongoing frustration.
+- Draft dramatization:
+  - { speaker: "Dana Reyes", role: "Parent", line: "This is the third time I'm asking — can we please get him evaluated? I've been raising this since the start of the year." }
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We appreciate your patience, we just don't think an evaluation is warranted right now." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "Repeated requests like this over months without an evaluation is exactly the pattern that's been found to violate Child Find - this shouldn't keep getting deferred.", tag: { id: "child-find", status: "violated" } }
+- Severity: high
+
+## CANDIDATE: H.P. v. Board of Education of the City of Chicago
+- Proposed category: understandable-language (existing category — 2nd case)
+- Citation: 385 F. Supp. 3d 623 (N.D. Ill. 2019), Case No. 1:18-cv-00621, Judge Sara L. Ellis. https://law.justia.com/cases/federal/district-courts/illinois/ilndce/1:2018cv00621/348621/94/
+- Confidence: high — verified directly against CourtListener (citation, docket, judge, party names all match) and independently corroborated across Justia, PacerMonitor, Law360, the Civil Rights Litigation Clearinghouse, and MultiLingual magazine's coverage of the resulting settlement.
+- Facts (paraphrased): Seven Chicago Public Schools students with IEPs, and their Limited-English-Proficient parents (primarily Spanish, Mandarin, and Polish speakers), brought a class action alleging CPS had no policy for providing written translations of IEP documents, no independent interpreters at IEP meetings, and used untrained ad hoc staff as interpreters with no competency evaluation — resulting in incomplete, inaccurate, editorialized translations district-wide.
+- Rule/holding: The court denied the district's motion to dismiss, holding the allegations were sufficient to show LEP parents were denied meaningful language access, which can itself constitute denial of the child's IDEA rights — the lack of translation/interpretation significantly impeded parents' ability to participate in the IEP process.
+- Draft takeaway: This isn't just a one-family problem — a district-wide pattern of ad hoc, unverified interpretation is itself an actionable systemic violation, not just bad luck in one meeting.
+- Draft dramatization:
+  - { speaker: "Dana Reyes", role: "Parent", line: "Every time we have a meeting, whoever happens to be free interprets for me. Nobody's ever asked if they're actually qualified to do it." }
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "It's whoever's available that day — we don't have a formal interpreter program." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "That's not just your situation — if the district has no real standard for this, that's a pattern that can violate every LEP family's rights, not just yours.", tag: { id: "understandable-language", status: "violated" } }
+- Severity: high
+
+## CANDIDATE: Alta Loma School District IEE Delay Dispute
+- Proposed category: iee (existing category — 2nd case)
+- Citation: Cal. Office of Administrative Hearings, Case No. 2017120979 (2019, after partial remand). Primary source, hosted on CA OAH's own government domain: https://www.dgs.ca.gov/OAH/Case-Types/Special-Education/Services/-/media/Divisions/OAH/Special-Education/SE-Decisions/2019/2019---November/2017120979AfterPartialRemandAcc.pdf
+- Confidence: high — primary decision hosted directly on dgs.ca.gov (CA OAH's own domain), corroborated by an independent secondary summary.
+- Facts (paraphrased): A parent requested public funding for an independent visual-processing evaluation from a named evaluator. The evaluator gave his rate to the district at the parent's request; it wasn't clearly communicated whether that rate might exceed the SELPA's cost criteria, but the evaluator's actual invoiced fee turned out to be within the district's cost criteria, and the district had promptly offered a qualifying evaluation.
+- Rule/holding: The ALJ found the parent/student did not prove the district unreasonably delayed or that its cost-criteria response was unreasonable — the district had, in fact, promptly offered an IEE within its reasonable cost criteria.
+- Draft takeaway: Not every IEE dispute is a violation — this is the flip side of the Y.C.Q./Chichester case already in this category: a district that responds promptly and reasonably to an IEE request, even if the process feels confusing to the parent in the moment, can be found to have done it right.
+- Draft dramatization:
+  - { speaker: "Dana Reyes", role: "Parent", line: "It's been weeks since I asked for an independent evaluation and I still don't have a straight answer on the cost." }
+  - { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We offered to fund it within our standard cost criteria as soon as we had the evaluator's actual rate — that offer's been open." }
+  - { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "It's confusing while it's happening, but responding promptly within the cost criteria is actually what the district's supposed to do here.", tag: { id: "iee", status: "honored" } }
+- Severity: low
+
+</details>
+
+---
+
+## Found but not merge-ready
+
+- **Predetermination (2nd case) — H.B. ex rel. P.B. v. Las Virgenes Unified School District**, 9th Cir., decided 2007-07-03, Docket No. 05-56486. The case's existence, court, and legal holding are verified directly against CourtListener's index (not a search summary) — it's treated as foundational 9th Circuit predetermination authority, clarifying that staff arriving with a draft plan isn't itself a violation; the violation is being unwilling to actually consider alternatives once at the table. **But** the specific underlying student facts couldn't be retrieved in this pass (CourtListener and Justia both blocked direct full-text fetch), and every other Cited episode is grounded in concrete real facts, not just an abstract holding. Not drafting a full dramatization from a holding alone — that would look fact-grounded without actually being it. Needs someone to pull the full opinion before this is usable.
+
+## Not found, round 2 (flagged, not candidates)
+
+- **Due-process (2nd case)** — no clean second case found distinct from *Jaynes*. Two near-misses checked and rejected as poor fits (not existence problems): *Amanda J. v. Clark County* (real, but about records access, not notice — redirected above) and *K.A. v. Fulton County School District* (real, 741 F.3d 1195, 11th Cir. 2013, but the court found the notice deficiencies didn't warrant relief, so it doesn't illustrate the category).
+- **Missing-member (2nd case)** — no second case found. One real, verified near-miss: *W.G. v. Board of Trustees of Target Range School District*, 960 F.2d 1479 (9th Cir. 1992) — a principal presented parents with an already-completed IEP drafted without the parents or the child's teacher, and the district refused to reconvene. Real and strong, but conceptually closer to predetermination/participation than to missing-member's "a required role absent from an otherwise-properly-convened meeting" framing. Flagged in case a future reviewer judges it fits one of those categories better than as a forced missing-member match.
+- **Retaliation (2nd case)** — strongest lead, *Settlegoode v. Portland Public Schools* (371 F.3d 503, 9th Cir. 2004, real, $1M verdict upheld), is an **employee** retaliation case, not **parent** retaliation — doesn't fit this category's definition. No case name found that does.
+- **Burden of proof (2nd case)** — no case found. New York has a state statute placing the burden of proof on the district in all due-process hearings (a real departure from *Schaffer*'s default rule) — worth chasing as its own candidate if a specific NY hearing decision applying that statute turns up later.
+
+## Hallucinated citations caught this session (pattern note)
+
+Three so far, all from AI-search-tool synthesized summaries, none from primary-source fetches:
+1. "Sandra S. v. Upper Darby School District" (round 1, Records Access) — doesn't exist in CourtListener.
+2. "George C. v. Hawaii Department of Education" (round 2, participation) — doesn't exist; near-identical framing to the real *Doug C. v. Hawaii* already in `data.js`, likely a garbled recombination of it.
+3. "Cobb County School District v. D.B., N.D. Cal. 2015" (round 2, burden-of-proof) — doesn't exist; a real, unrelated *Cobb County* case exists in N.D. Ga. (2005).
+
+Three catches across two research rounds is a real, recurring rate, not a one-off — every candidate above was checked against this exact failure mode before being included. Worth keeping the "Source-type scope" section's neighboring verification discipline in `CITED-INGESTION-RUNBOOK.md` front-of-mind for every future scan, not just source-type flags.

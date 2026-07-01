@@ -9,8 +9,8 @@
 // Names and dialogue in the "dramatization" field are invented composites
 // for readability. The facts, citations, and legal holdings are real.
 // See README.md for the full source list and what's still pending
-// case-law backing (records access, confidentiality, informed consent,
-// understandable language, independent educational evaluation).
+// case-law backing (records access, confidentiality, informed consent —
+// see the Phase 1i / 1j build history for what's been filled since).
 
 const CATEGORIES = {
   predetermination:   "Predetermination",
@@ -21,6 +21,9 @@ const CATEGORIES = {
   "child-find":       "Child Find / Duty to Evaluate",
   retaliation:        "Retaliation Against Parents",
   "burden-of-proof":  "Burden of Proof in Disputes",
+  "understandable-language": "Understandable Language",
+  iee:                "Independent Educational Evaluation",
+  "records-access":   "Records Access",
 };
 
 const CATEGORY_DESCRIPTIONS = {
@@ -32,6 +35,9 @@ const CATEGORY_DESCRIPTIONS = {
   "child-find":       "The school fails to evaluate a suspected disability that's already been directly raised.",
   retaliation:        "The school responds to a parent asserting their rights with punitive action.",
   "burden-of-proof":  "Who has to prove the plan is wrong once a dispute reaches a formal hearing.",
+  "understandable-language": "A parent isn't given information in a language or format they can actually understand, undermining everything that follows.",
+  iee:                "The school fails to honor a parent's right to have their child evaluated by an independent, outside evaluator at public expense.",
+  "records-access":   "The school withholds a parent's access to their child's own evaluation records, undermining everything downstream.",
 };
 
 const EPISODES = [
@@ -177,6 +183,132 @@ const EPISODES = [
       { speaker: "Dana Reyes", role: "Parent", line: "I disagree with this evaluation, so I want to request a hearing - you'll need to show why your version is correct." },
       { speaker: "Ms. Whitfield", role: "LEA Rep", line: "Actually, once you request the hearing, the legal burden is on you to show the IEP is inappropriate, not on us to defend it by default.", tag: { id: "burden-of-proof", status: "honored" } },
       { speaker: "Dana Reyes", role: "Parent", line: "I didn't realize that. That changes how I need to prepare for this." },
+    ],
+  },
+  {
+    id: "understandable-language-bellflower",
+    category: "understandable-language",
+    severity: "high",
+    source: {
+      case: "Parent on Behalf of Student v. Bellflower Unified School District",
+      citation: "Cal. Office of Administrative Hearings, Case No. 2016100887 (2017)",
+      url: "https://www.californiaspecialedlaw.com/hearing-decisions/oah-2016100887/",
+    },
+    facts: "The district knew the mother was a Spanish speaker with very limited English - she needed help completing English-language enrollment forms, made her initial written evaluation request in Spanish, and had documented difficulty communicating with staff in English. Despite this, the district never provided Spanish translations of three separate IEP documents, and failed to provide an interpreter - or ensure all necessary team members were present - at the IEP team meeting where the most recent plan was finalized.",
+    rule: "The administrative law judge found the district significantly impeded the mother's opportunity to participate in the IEP process. Providing an interpreter at one brief meeting plus an English-only copy of the IEP did not give her the information necessary to understand and participate. On these facts, her consent to the IEPs was found not - and could not reasonably have been interpreted as - informed.",
+    takeaway: "Consent isn't 'informed' just because a form got signed. If a parent genuinely can't read or understand the IEP in a language they know, an interpreter at one meeting plus an English-only document doesn't satisfy that - and it can undo the informed-consent basis for the whole plan.",
+    dramatization: [
+      { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We have an interpreter here for today's meeting, and I'll get you a copy of the IEP afterward." },
+      { speaker: "Dana Reyes", role: "Parent", line: "The last two IEPs were only in English. I couldn't read them, and there was no one to explain what I was agreeing to." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "An interpreter for one meeting and an English-only document afterward isn't really enough for you to have understood what you signed.", tag: { id: "understandable-language", status: "violated" } },
+    ],
+  },
+  {
+    id: "iee-ycq",
+    category: "iee",
+    severity: "high",
+    source: {
+      case: "Y.C.Q. v. Chichester School District",
+      citation: "Pennsylvania due-process hearing decisions (Office for Dispute Resolution); enforcement proceedings before the Third Circuit",
+      url: "https://www.elc-pa.org/cases/y-c-q-v-chichester-school-district/",
+    },
+    facts: "Y.C.Q., a high-school student in foster care and an English learner with a disability, had her request for an independent educational evaluation effectively denied and delayed by the district. Following two due-process hearings, a hearing officer found she had been unlawfully deprived of special education services and ordered the district to pay for an independent educational evaluation and to create an IEP for her. The district refused to comply with either order and appealed both to the Third Circuit.",
+    rule: "When a hearing officer determines a district's own evaluation was inadequate, the district can be ordered to fund an independent educational evaluation at public expense directly - and refusing to comply doesn't pause that obligation, it escalates into a state-enforcement matter.",
+    takeaway: "If a district stalls or refuses an IEE request, a hearing officer can order the district to pay for one outright. And if the district still won't comply, that's an enforceable violation you can escalate - not a dead end.",
+    dramatization: [
+      { speaker: "Dana Reyes", role: "Parent", line: "I don't agree with the district's evaluation. I'm requesting an independent evaluation at public expense." },
+      { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We'll take that under consideration and get back to you." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "Once you've made that request, the district has to either fund it or file for a hearing to defend its own evaluation without unnecessary delay - 'we'll consider it' isn't really a third option.", tag: { id: "iee", status: "violated" } },
+    ],
+  },
+  {
+    id: "records-access-amandaj",
+    category: "records-access",
+    severity: "high",
+    source: {
+      case: "Amanda J. v. Clark County School District",
+      citation: "267 F.3d 877 (9th Cir. 2001)",
+      url: "https://caselaw.findlaw.com/court/us-9th-circuit/1281824.html",
+    },
+    facts: "The district evaluated a young child for developmental delays. Its own school psychologist and speech pathologist identified strong indicators of autism - the speech pathologist rated her 'severely autistic' on diagnostic scales. When the parents requested her evaluation records, the district gave them only a two-page summary that omitted any mention of autism or a recommendation for psychiatric evaluation. The parents didn't see the full reports until months later, after moving out of state and requesting a file transfer.",
+    rule: "The Ninth Circuit held that withholding the complete evaluation records from the parents was itself a procedural IDEA violation - parents can't meaningfully participate in decisions about a child's disability if the district doesn't give them the full picture of what its own evaluators found. The court held this alone denied FAPE: 'By failing to disclose [the child's] full records to her parents once they were requested... the District denied [her] a FAPE.'",
+    takeaway: "A two-page summary isn't the same as the actual evaluation. If a district's own evaluators found something significant and it doesn't show up in what you're handed, that's not just an incomplete file - it's the specific violation that can undo the process.",
+    dramatization: [
+      { speaker: "Dana Reyes", role: "Parent", line: "I requested her full evaluation file last week. This is only two pages - is that everything?" },
+      { speaker: "Dr. Novak", role: "Evaluator", line: "That's a summary of the key findings, should be enough to go on for today's meeting." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "If there's more in the full evaluation than what's summarized here, she's entitled to see all of it before we make decisions based on it.", tag: { id: "records-access", status: "violated" } },
+    ],
+  },
+  {
+    id: "stayput-ridley",
+    category: "stayput",
+    severity: "medium",
+    source: {
+      case: "M.R. v. Ridley School District",
+      citation: "868 F.3d 218 (3d Cir. 2017)",
+      url: "https://law.justia.com/cases/federal/appellate-courts/ca3/16-2465/16-2465-2017-08-22.html",
+    },
+    facts: "Parents enrolled their daughter in a private school and sought reimbursement; a hearing officer agreed in 2009 and set that private placement as her stay-put placement. The district appealed. By the time the Third Circuit ruled in 2012, it reversed on the underlying IEP claim - but the parents still sought reimbursement for the stay-put placement's cost for the entire period the appeal was pending, 2009-2012.",
+    rule: "The Third Circuit held IDEA's stay-put provision (20 U.S.C. section 1415(j)) extends through judicial appeals, not just administrative proceedings - the obligation to fund a child's stay-put placement continues through final resolution at every level, including the courts.",
+    takeaway: "Stay-put doesn't expire when a case moves from a hearing officer to a courtroom. If a placement was your child's stay-put placement at the start of a dispute, the district's obligation to fund it can keep running through the entire appeals process, however long that takes.",
+    dramatization: [
+      { speaker: "Ms. Whitfield", role: "LEA Rep", line: "The hearing officer's stay-put order was from the original decision - now that we're appealing, our funding obligation is on hold until this is resolved." },
+      { speaker: "Dana Reyes", role: "Parent", line: "That's not how I understood stay-put to work - I thought his placement stays funded the whole time this is being fought over." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "She's right - stay-put runs through the full appeals process, not just up to the first ruling. That funding doesn't pause because you're appealing.", tag: { id: "stayput", status: "violated" } },
+    ],
+  },
+  {
+    id: "childfind-matula",
+    category: "child-find",
+    severity: "high",
+    source: {
+      case: "W.B. v. Matula",
+      citation: "67 F.3d 484 (3d Cir. 1995)",
+      url: "https://law.justia.com/cases/federal/appellate-courts/F3/67/484/587547/",
+    },
+    facts: "Before her son entered first grade, a mother repeatedly raised concerns with school officials about his educational difficulties over many months, asking that he be evaluated. The school persistently refused to evaluate, classify, or provide any services.",
+    rule: "The Third Circuit held that damages are available under IDEA, Section 504, and Section 1983 when a district refuses to evaluate, classify, and serve a child despite a parent's repeated, documented requests - a district can't simply run out the clock on Child Find by ignoring a parent.",
+    takeaway: "Child Find isn't satisfied by waiting the parent out. If you've raised the concern more than once and the school still won't evaluate, that pattern of refusal is itself actionable - not just an ongoing frustration.",
+    dramatization: [
+      { speaker: "Dana Reyes", role: "Parent", line: "This is the third time I'm asking - can we please get him evaluated? I've been raising this since the start of the year." },
+      { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We appreciate your patience, we just don't think an evaluation is warranted right now." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "Repeated requests like this over months without an evaluation is exactly the pattern that's been found to violate Child Find - this shouldn't keep getting deferred.", tag: { id: "child-find", status: "violated" } },
+    ],
+  },
+  {
+    id: "understandable-language-chicago",
+    category: "understandable-language",
+    severity: "high",
+    source: {
+      case: "H.P. v. Board of Education of the City of Chicago",
+      citation: "385 F. Supp. 3d 623 (N.D. Ill. 2019)",
+      url: "https://law.justia.com/cases/federal/district-courts/illinois/ilndce/1:2018cv00621/348621/94/",
+    },
+    facts: "Seven Chicago Public Schools students with IEPs, and their Limited-English-Proficient parents (primarily Spanish, Mandarin, and Polish speakers), brought a class action alleging CPS had no policy for providing written translations of IEP documents, no independent interpreters at IEP meetings, and used untrained ad hoc staff as interpreters with no competency evaluation - resulting in incomplete, inaccurate, editorialized translations district-wide.",
+    rule: "The court denied the district's motion to dismiss, holding the allegations were sufficient to show LEP parents were denied meaningful language access, which can itself constitute denial of the child's IDEA rights - the lack of translation/interpretation significantly impeded parents' ability to participate in the IEP process.",
+    takeaway: "This isn't just a one-family problem - a district-wide pattern of ad hoc, unverified interpretation is itself an actionable systemic violation, not just bad luck in one meeting.",
+    dramatization: [
+      { speaker: "Dana Reyes", role: "Parent", line: "Every time we have a meeting, whoever happens to be free interprets for me. Nobody's ever asked if they're actually qualified to do it." },
+      { speaker: "Ms. Whitfield", role: "LEA Rep", line: "It's whoever's available that day - we don't have a formal interpreter program." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "That's not just your situation - if the district has no real standard for this, that's a pattern that can violate every LEP family's rights, not just yours.", tag: { id: "understandable-language", status: "violated" } },
+    ],
+  },
+  {
+    id: "iee-altaloma",
+    category: "iee",
+    severity: "low",
+    source: {
+      case: "Alta Loma School District IEE Delay Dispute",
+      citation: "Cal. Office of Administrative Hearings, Case No. 2017120979 (2019, after partial remand)",
+      url: "https://www.dgs.ca.gov/OAH/Case-Types/Special-Education/Services/-/media/Divisions/OAH/Special-Education/SE-Decisions/2019/2019---November/2017120979AfterPartialRemandAcc.pdf",
+    },
+    facts: "A parent requested public funding for an independent visual-processing evaluation from a named evaluator. The evaluator gave his rate to the district at the parent's request; it wasn't clearly communicated whether that rate might exceed the SELPA's cost criteria, but the evaluator's actual invoiced fee turned out to be within the district's cost criteria, and the district had promptly offered a qualifying evaluation.",
+    rule: "The ALJ found the parent/student did not prove the district unreasonably delayed or that its cost-criteria response was unreasonable - the district had, in fact, promptly offered an IEE within its reasonable cost criteria.",
+    takeaway: "Not every IEE dispute is a violation - this is the flip side of the Y.C.Q./Chichester case already in this category: a district that responds promptly and reasonably to an IEE request, even if the process feels confusing to the parent in the moment, can be found to have done it right.",
+    dramatization: [
+      { speaker: "Dana Reyes", role: "Parent", line: "It's been weeks since I asked for an independent evaluation and I still don't have a straight answer on the cost." },
+      { speaker: "Ms. Whitfield", role: "LEA Rep", line: "We offered to fund it within our standard cost criteria as soon as we had the evaluator's actual rate - that offer's been open." },
+      { speaker: "Mr. Alvarez", role: "Special Ed Teacher", line: "It's confusing while it's happening, but responding promptly within the cost criteria is actually what the district's supposed to do here.", tag: { id: "iee", status: "honored" } },
     ],
   },
 ];
