@@ -1,6 +1,11 @@
-// IEP Process Simulator — Phase 1b rendering logic
+// IEP Process Simulator — Phase 1b rendering logic, extended in Phase 1i
 // Two views render from the SAME episode data: Case File and Simulated Meeting.
 // Switching the view keeps you on the same episode.
+//
+// Phase 1i: a category can now hold more than one real case. The sidebar
+// lists categories (not individual episodes); picking a category jumps to
+// its first case, and a case-switcher lets you flip to another real case
+// in the same category without leaving the category.
 
 let activeEpisodeId = EPISODES[0].id;
 let activeView = "case-file"; // "case-file" | "simulated-meeting"
@@ -12,18 +17,30 @@ function getEpisode(id) {
   return EPISODES.find(e => e.id === id);
 }
 
+function getEpisodesByCategory(categoryId) {
+  return EPISODES.filter(e => e.category === categoryId);
+}
+
 function renderEpisodeList() {
   const list = document.getElementById("episode-list");
   list.innerHTML = "";
-  EPISODES.forEach(ep => {
+  const activeCategory = getEpisode(activeEpisodeId).category;
+
+  Object.keys(CATEGORIES).forEach(categoryId => {
+    const episodes = getEpisodesByCategory(categoryId);
+    if (episodes.length === 0) return; // category exists but has no case yet
+
     const card = document.createElement("button");
-    card.className = "episode-card" + (ep.id === activeEpisodeId ? " active" : "");
+    card.className = "episode-card" + (categoryId === activeCategory ? " active" : "");
+    const caseCountHtml = episodes.length > 1
+      ? `<span class="episode-case-count">${episodes.length} real cases</span>`
+      : "";
     card.innerHTML = `
-      <span class="episode-category">${CATEGORIES[ep.category]}</span>
-      <span class="episode-desc">${CATEGORY_DESCRIPTIONS[ep.category]}</span>
-      <span class="episode-severity severity-${ep.severity}">${SEVERITY_LABEL[ep.severity]}</span>
+      <span class="episode-category">${CATEGORIES[categoryId]}</span>
+      <span class="episode-desc">${CATEGORY_DESCRIPTIONS[categoryId]}</span>
+      ${caseCountHtml}
     `;
-    card.addEventListener("click", () => selectEpisode(ep.id));
+    card.addEventListener("click", () => selectCategory(categoryId));
     list.appendChild(card);
   });
 }
@@ -31,6 +48,18 @@ function renderEpisodeList() {
 function renderViewToggle() {
   document.getElementById("view-case-file").classList.toggle("active", activeView === "case-file");
   document.getElementById("view-simulated-meeting").classList.toggle("active", activeView === "simulated-meeting");
+}
+
+function renderCaseSwitcher(ep) {
+  const episodes = getEpisodesByCategory(ep.category);
+  if (episodes.length <= 1) return "";
+  const index = episodes.findIndex(e => e.id === ep.id);
+  return `
+    <div class="case-switcher">
+      <span class="case-switcher__label">Case ${index + 1} of ${episodes.length} for this category</span>
+      <button class="case-switcher__btn" id="case-switcher-btn">Try another real case &rarr;</button>
+    </div>
+  `;
 }
 
 function renderCaseFile(ep) {
@@ -86,13 +115,32 @@ function renderSimulatedMeeting(ep) {
 function renderMain() {
   const ep = getEpisode(activeEpisodeId);
   const main = document.getElementById("episode-detail");
-  main.innerHTML = activeView === "case-file" ? renderCaseFile(ep) : renderSimulatedMeeting(ep);
+  const switcherHtml = renderCaseSwitcher(ep);
+  const contentHtml = activeView === "case-file" ? renderCaseFile(ep) : renderSimulatedMeeting(ep);
+  main.innerHTML = switcherHtml + contentHtml;
+
+  const switcherBtn = document.getElementById("case-switcher-btn");
+  if (switcherBtn) switcherBtn.addEventListener("click", cycleCase);
 }
 
 function selectEpisode(id) {
   activeEpisodeId = id;
   renderEpisodeList();
   renderMain();
+}
+
+function selectCategory(categoryId) {
+  const episodes = getEpisodesByCategory(categoryId);
+  if (episodes.length === 0) return;
+  selectEpisode(episodes[0].id);
+}
+
+function cycleCase() {
+  const current = getEpisode(activeEpisodeId);
+  const episodes = getEpisodesByCategory(current.category);
+  const index = episodes.findIndex(e => e.id === activeEpisodeId);
+  const next = episodes[(index + 1) % episodes.length];
+  selectEpisode(next.id);
 }
 
 function selectView(view) {

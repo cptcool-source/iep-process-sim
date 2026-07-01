@@ -126,6 +126,7 @@ main {
 .severity-high { color: var(--high); }
 .severity-medium { color: var(--medium); }
 .severity-low { color: var(--low); }
+.episode-case-count { font-size: 11px; font-weight: 700; color: var(--resolved); }
 
 /* Detail panel */
 .episode-detail { min-height: 300px; }
@@ -481,3 +482,33 @@ main {
   .quote-widget { padding: 20px; }
   .track-card, .track-card--primary { padding: 22px 20px; }
 }
+
+/* ============================================================
+   Cited — case switcher (multiple real cases per category)
+   ============================================================ */
+
+.case-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  margin-bottom: 16px;
+}
+.case-switcher__label { font-size: 13px; color: var(--muted); }
+.case-switcher__btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+.case-switcher__btn:hover { border-color: var(--text); }
