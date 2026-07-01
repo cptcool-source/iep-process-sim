@@ -564,6 +564,37 @@ main {
 .plan-card h4 { font-size: 14px; margin: 0 0 6px; }
 .plan-card p { font-size: 13px; color: var(--muted); margin: 0; }
 
+/* LRE spectrum ladder — a spectrum (least to most restrictive), not a
+   sequence, so it deliberately does NOT reuse the numbered .process-flow
+   styling or red/green value-coded color (restrictive settings aren't
+   "bad" — IDEA just presumes LRE first). Neutral scale only. */
+.lre-ladder {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 20px;
+  border-left: 4px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lre-ladder__rung {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.lre-ladder__rung p { margin: 0; font-size: 13px; color: var(--muted); }
+.lre-ladder__rung strong { color: var(--text); }
+.lre-ladder__label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
 /* Age-of-majority / state-variance table */
 .plan-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
 .plan-table th, .plan-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
