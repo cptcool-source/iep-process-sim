@@ -85,8 +85,8 @@ const PAIN_POINTS = [
     category: "participation",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog (individual account, name withheld pending outreach)", quote: "An IEP meeting has terrain. It has momentum. It has default settings." },
-      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog (individual account, name withheld pending outreach)", quote: "It was the child's meeting, not mine as the parent." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog", quote: "An IEP meeting has terrain. It has momentum. It has default settings." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog", quote: "It was the child's meeting, not mine as the parent." },
       { type: "aggregate", date_added: "2026-07-01", author: "Sanderson et al.", publication: "Journal of Research in Special Educational Needs (2023)", url: "https://nasenjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1471-3802.12582", quote: "Power dynamics that impede equal, meaningful participation and partnerships." },
     ],
     pattern_summary: "Parents describe a structural home-field disadvantage: school staff run these meetings routinely, while parents attend rarely, and that imbalance shows up as parent input being treated as secondary or procedural rather than substantive.",
@@ -113,8 +113,8 @@ const PAIN_POINTS = [
     category: "predetermination",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog (individual account, name withheld pending outreach)", quote: "Accused of being condescending for citing peer-reviewed studies." },
-      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog (individual account, name withheld pending outreach)", quote: "Default settings." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog", quote: "Accused of being condescending for citing peer-reviewed studies." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog", quote: "Default settings." },
     ],
     pattern_summary: "Parents bring outside evidence — research, private provider input — and describe it being waved off or met with defensiveness rather than genuine consideration.",
     takeaway: "This is the same underlying problem as Deal v. Hamilton County, just caught earlier and never litigated. When a team is defensive about outside evidence instead of curious, predetermination is often happening in real time.",
@@ -137,8 +137,8 @@ const PAIN_POINTS = [
     category: "language",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog (individual account, name withheld pending outreach)", quote: "Acronyms move faster than grief." },
-      { type: "individual", date_added: "2026-06-30", source_desc: "First-person essay by a nonspeaking autistic self-advocate (name withheld pending outreach)", quote: "You all talk really fast, so it makes it sort of hard sometimes." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog", quote: "Acronyms move faster than grief." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "First-person essay by a nonspeaking autistic self-advocate", quote: "You all talk really fast, so it makes it sort of hard sometimes." },
     ],
     pattern_summary: "Both parents and students report meetings moving at a pace and register — acronyms, clinical language — that outpaces genuine understanding in the room, even when notice and consent were technically given.",
     takeaway: "Consent and notice being given isn't the same as being understood. One student's own account of a meeting about her makes this concrete: fast, jargon-heavy speech she said outright was hard to follow.",
@@ -162,7 +162,7 @@ const PAIN_POINTS = [
     category: "records",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog (individual account, name withheld pending outreach)", quote: "School declined to remove trauma-related language from official records, claiming they 'could not' alter teacher feedback." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog", quote: "School declined to remove trauma-related language from official records, claiming they 'could not' alter teacher feedback." },
     ],
     pattern_summary: "A parent requests a correction or removal of specific language from official records or notes and is told the school \"can't\" change it, without a clear legal reason given.",
     takeaway: "Parents have a real right to request corrections to education records. If a school says \"we can't\" without explaining why, that's worth pushing on, not accepting at face value.",
@@ -185,7 +185,7 @@ const PAIN_POINTS = [
     category: "cost-barrier",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog (individual account, name withheld pending outreach)", quote: "Parents are retaining lawyers for $7,000–$10,000. Because the price point represents the level of fear." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog", quote: "Parents are retaining lawyers for $7,000–$10,000. Because the price point represents the level of fear." },
     ],
     pattern_summary: "Parents describe feeling they need to hire an attorney or paid advocate just to be taken seriously or to enforce rights they already have on paper — at a cost many families can't absorb.",
     takeaway: "A right that effectively requires a $7,000+ attorney to exercise isn't equally available to every family. That gap is itself part of the pattern, even when no single meeting technically breaks a rule.",
@@ -209,7 +209,7 @@ const PAIN_POINTS = [
     category: "ableist-goals",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog (individual account, name withheld pending outreach)", quote: "Goals targeting 'volume of voice' and 'appropriate word choice' — goals the parent identified as promoting masking." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Neurodiversity-affirming clinician's blog", quote: "Goals targeting 'volume of voice' and 'appropriate word choice' — goals the parent identified as promoting masking." },
     ],
     pattern_summary: "IEP goals or in-classroom demands target surface behaviors (eye contact, \"appropriate\" volume or word choice) rather than the child's actual needs, which can push a child toward masking instead of genuine support.",
     takeaway: "A goal like \"maintain eye contact\" or \"appropriate volume\" should be questioned: is this serving the student's actual needs, or training them to perform comfort for the adults in the room?",
@@ -233,7 +233,7 @@ const PAIN_POINTS = [
     category: "student-dignity",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "First-person essay by a nonspeaking autistic self-advocate (name withheld pending outreach)", quote: "I get my presence at this school is barely tolerated. ...I'm not OK with being talked about right in front of me or even worse, being the root of some adult's joke." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "First-person essay by a nonspeaking autistic self-advocate", quote: "I get my presence at this school is barely tolerated. ...I'm not OK with being talked about right in front of me or even worse, being the root of some adult's joke." },
     ],
     pattern_summary: "Students — especially nonspeaking or minimally-speaking students, or those using AAC — describe being talked about in the third person during their own meetings, or treated with open disrespect by staff. One account includes a specific incident: an intervention specialist took the student's AAC device, typed a mocking phrase, and played it aloud for other students.",
     takeaway: "This is the most serious real pattern found and it's about basic dignity, not procedure. A meeting can be legally compliant on paper and still fail a student completely on this front.",
@@ -259,7 +259,7 @@ const PAIN_POINTS = [
     category: "unpaid-labor",
     date_added: "2026-06-30",
     real_sources: [
-      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog (individual account, name withheld pending outreach)", quote: "The mistake our culture makes is assuming that a mother's role in therapy, regulation, and advocacy can be outsourced, as if she is merely the driver, the scheduler, the form-filler, the emotional witness sitting outside the real work." },
+      { type: "individual", date_added: "2026-06-30", source_desc: "Autism-parenting blog", quote: "The mistake our culture makes is assuming that a mother's role in therapy, regulation, and advocacy can be outsourced, as if she is merely the driver, the scheduler, the form-filler, the emotional witness sitting outside the real work." },
     ],
     pattern_summary: "Parents describe being treated as unpaid logistics coordinators for their child's services — scheduling, paperwork, being the \"backup regulator\" — rather than being recognized and supported as part of the actual intervention.",
     takeaway: "If a family is quietly doing coordination work that should be the district's responsibility, that's worth naming directly, even though it rarely shows up as a formal violation.",
