@@ -19,20 +19,245 @@
 
 <header class="site-header">
   <h1>IEP Playbook</h1>
-  <p class="subtitle">Practical prep for an IEP meeting, structured the way most parent guides already are &mdash; with real cited cases and real accounts from Cited and Simulated woven in at the points where those specific failures tend to happen.</p>
+  <p class="subtitle">A guide to building a genuinely good IEP &mdash; the document itself, not just the meeting where it gets discussed &mdash; plus a practical meeting-conduct resource grounded in real cases and real accounts.</p>
 </header>
 
 <div class="disclaimer">
-  <strong>This is a living document.</strong> The four-phase structure (Before / During / After / If You Disagree) was benchmarked against existing well-known IEP guides (Wrightslaw, COPAA, Understood.org, and several independent parent-advocate guides all converge on this same shape). The callout boxes are this project's own research: a blue <strong>Real Case</strong> tag cites an actual adjudicated court decision (see the Cited page), a green <strong>Real Account</strong> tag is a real, de-identified personal account (see the Simulated page), and an amber <strong>Research</strong> tag is aggregate/published data. General guidance outside the callouts is synthesized best-practice, not from this project's own dataset. This page will keep changing as the underlying data grows &mdash; see README.md.
+  <strong>This is a living document, in two parts.</strong> The main content below is a guide to the IEP <em>document</em> itself &mdash; checked against current federal regulations (34 CFR Part 300) as of July 2026. A <strong class="text-violated">&#9888; breakpoint flag</strong> appears wherever this project has real, documented evidence (a real case or real account, from <a href="cited.html">Cited</a> or <a href="simulated.html">Simulated</a>) that this specific step is where things commonly go wrong. Most steps don't have one yet &mdash; that's an honest gap in this project's evidence so far, not a claim that nothing goes wrong there; see README.md's roadmap. Anything tagged <strong>Illustrative example</strong> is hypothetical, invented for clarity &mdash; never sourced fact, and never mixed with real evidence. Further down, the <a href="#meeting-resource">Meeting Resource</a> section is this page's original content: a blue <strong>Real Case</strong> tag cites an actual adjudicated court decision, a green <strong>Real Account</strong> tag is a real, de-identified personal account, and an amber <strong>Research</strong> tag is aggregate/published data. This page will keep changing as the underlying data grows &mdash; see README.md.
 </div>
 
 <main class="playbook">
   <nav class="playbook-toc" aria-label="Table of contents">
-    <a href="#before">Before the Meeting</a>
-    <a href="#during">During the Meeting</a>
-    <a href="#after">After the Meeting</a>
-    <a href="#disagree">If You Disagree</a>
+    <a href="#overview">Overview</a>
+    <a href="#present-levels">Present Levels</a>
+    <a href="#goals">Annual Goals</a>
+    <a href="#progress">Measuring Progress</a>
+    <a href="#services">Services &amp; Supports</a>
+    <a href="#placement">Placement &amp; LRE</a>
+    <a href="#assessments">Assessments</a>
+    <a href="#transition">Transition &amp; Age of Majority</a>
+    <a href="#meeting-resource">Meeting Resource &darr;</a>
   </nav>
+
+  <section id="overview" class="playbook-section">
+    <h2>The 10 Required Parts of an IEP</h2>
+    <p>Federal law (IDEA, 34 CFR &sect;300.320) requires every IEP to contain the same core parts, no matter your state or your child's disability. This page walks through what each one should actually look like when it's done well &mdash; not just that it exists on paper.</p>
+    <div class="process-flow">
+      <div class="process-step">
+        <span class="process-step__num">1</span>
+        <div class="process-step__content">
+          <h3><a href="#present-levels">Present levels of performance</a></h3>
+          <p>Where your child is right now, academically and functionally &mdash; the foundation everything else is built on.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">2</span>
+        <div class="process-step__content">
+          <h3><a href="#goals">Annual goals</a></h3>
+          <p>What your child is expected to achieve in the next 12 months.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">3</span>
+        <div class="process-step__content">
+          <h3><a href="#progress">How progress is measured</a></h3>
+          <p>How, and how often, you'll find out whether your child is on track.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">4</span>
+        <div class="process-step__content">
+          <h3><a href="#services">Special education &amp; related services</a></h3>
+          <p>The actual instruction, therapies, and supports your child will receive.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">5</span>
+        <div class="process-step__content">
+          <h3><a href="#placement">Time with nondisabled peers</a></h3>
+          <p>How much of the day your child spends in general education, and why.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">6</span>
+        <div class="process-step__content">
+          <h3><a href="#assessments">State &amp; district assessment modifications</a></h3>
+          <p>How your child takes standardized tests, if adjustments are needed.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">7</span>
+        <div class="process-step__content">
+          <h3><a href="#services">Service dates, frequency &amp; location</a></h3>
+          <p>When, how often, and where each service actually happens.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">8</span>
+        <div class="process-step__content">
+          <h3><a href="#progress">Progress reports</a></h3>
+          <p>How often you'll be told whether goals are being met.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">9</span>
+        <div class="process-step__content">
+          <h3><a href="#transition">Transition services (by age 16)</a></h3>
+          <p>Planning for life after high school.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">10</span>
+        <div class="process-step__content">
+          <h3><a href="#transition">Age-of-majority notice</a></h3>
+          <p>When and how educational rights transfer to your child as an adult.</p>
+        </div>
+      </div>
+    </div>
+    <p class="aside-note">Verified against the current federal regulations (34 CFR Part 300) as of July 2026. Where a rule genuinely varies by state &mdash; extended school year eligibility, age of majority &mdash; that's called out explicitly below rather than given one number that isn't actually universal.</p>
+  </section>
+
+  <section id="present-levels" class="playbook-section">
+    <h2>Present Levels of Academic &amp; Functional Performance</h2>
+    <p>This is the foundation everything else in the IEP is built on &mdash; a description of where your child is right now, based on information no older than a year. It should cover every area where support is needed: academics, communication, social skills, behavior, daily living, mobility &mdash; not just classroom subjects.</p>
+    <p>A well-written present-levels section describes real strengths and weaknesses, what helps your child learn, what gets in the way, and cites actual data (test scores, observations, evaluation results) &mdash; not vague impressions.</p>
+
+    <div class="example-box">
+      <p class="example-box__tag">Illustrative example</p>
+      <p><strong>Jordan, a hypothetical 5th grader with a learning disability:</strong> "Jordan reads grade-level text with 85% comprehension when it's read aloud, but decodes unfamiliar multisyllabic words with only 40% accuracy (QRI-6, [date]). Jordan's math computation is at grade level; written expression is roughly two grade levels behind, driven mainly by spelling and sentence mechanics rather than difficulty generating ideas."</p>
+    </div>
+
+    <details class="breakpoint-flag">
+      <summary class="breakpoint-flag__summary"><span class="breakpoint-flag__icon" aria-hidden="true">&#9888;</span> Real breakpoint: present levels built on records the school won't fix</summary>
+      <div class="breakpoint-flag__body">
+        <p>Present levels are only as good as the records and evaluation data behind them. Two real, documented failure patterns: a school refusing to correct inaccurate or mischaracterizing language in a child's file ("we can't," with no legal reason given), and a district giving parents only a two-page evaluation summary that omitted its own evaluators' significant findings &mdash; in one adjudicated case, an autism-diagnosis indicator never made it into what the parents saw before the IEP was written.</p>
+        <p class="breakpoint-flag__source">See the real account on <a href="simulated.html">Simulated</a> and the real case, <a href="cited.html">Amanda J. v. Clark County School District</a>, on Cited.</p>
+      </div>
+    </details>
+
+    <p>Before the meeting, request the full evaluation reports and your child's current records &mdash; not a summary. If you disagree with the district's evaluation once you've seen it, you have the right to request an Independent Educational Evaluation (IEE) at public expense.</p>
+  </section>
+
+  <section id="goals" class="playbook-section">
+    <h2>Annual Goals</h2>
+    <p>An annual goal describes what your child can be expected to do or learn within a 12-month period. A well-written goal answers five questions:</p>
+    <div class="goal-formula">
+      <span class="goal-formula__part"><strong>Who</strong> will achieve it</span>
+      <span class="goal-formula__part"><strong>What</strong> skill or behavior</span>
+      <span class="goal-formula__part"><strong>How</strong> &mdash; to what level</span>
+      <span class="goal-formula__part"><strong>Where</strong> &mdash; in what setting</span>
+      <span class="goal-formula__part"><strong>When</strong> &mdash; by what date</span>
+    </div>
+
+    <div class="example-compare">
+      <div class="example-box example-box--weak">
+        <p class="example-box__tag">Weak goal</p>
+        <p>"Jordan will improve reading skills."</p>
+        <p>No measurable target, no timeline, no way to know whether it's working.</p>
+      </div>
+      <div class="example-box example-box--strong">
+        <p class="example-box__tag">Strong goal</p>
+        <p>"Given a list of 20 unfamiliar multisyllabic words, Jordan will decode with 60% accuracy by December 1, 75% by March 1, and 90% by June 15, as measured by teacher-administered word lists."</p>
+      </div>
+    </div>
+
+    <details class="breakpoint-flag">
+      <summary class="breakpoint-flag__summary"><span class="breakpoint-flag__icon" aria-hidden="true">&#9888;</span> Real breakpoint: goals that target masking, not real needs</summary>
+      <div class="breakpoint-flag__body">
+        <p>A real, documented account: goals written for "volume of voice" and "appropriate word choice" &mdash; which the parent identified as training their child to mask rather than addressing an actual need. A goal like "maintain eye contact" or "appropriate volume" is worth questioning directly: is this serving the student's actual functioning, or training them to perform comfort for the adults in the room?</p>
+        <p class="breakpoint-flag__source">See the real account on <a href="simulated.html">Simulated</a>.</p>
+      </div>
+    </details>
+
+    <p class="aside-note"><strong>If you use AI to help draft goal language:</strong> never enter your child's name or other identifying details into a public AI tool, and treat anything it produces as a rough first draft that still needs your and the team's real review &mdash; not something to paste in as-is.</p>
+  </section>
+
+  <section id="progress" class="playbook-section">
+    <h2>Measuring Progress &amp; Progress Reports</h2>
+    <p>The IEP team decides how progress toward each goal will be measured (standardized tests, teacher-collected data, work samples, observation) and how often you'll be told about it &mdash; typically alongside report cards. The criteria should be objective and specific, not "seems to be doing better."</p>
+    <div class="example-box">
+      <p class="example-box__tag">Illustrative example</p>
+      <p>Following Jordan's goal above, the school reports progress quarterly. The December report shows 45% decoding accuracy &mdash; on track toward the 90%-by-June target.</p>
+    </div>
+    <p>If a progress report shows your child isn't on track to meet a goal by year's end, that's worth raising with the team immediately &mdash; not waiting for the annual review to bring it up.</p>
+  </section>
+
+  <section id="services" class="playbook-section">
+    <h2>Services &amp; Supports</h2>
+    <p>Every IEP has to say exactly what your child will receive to meet their goals and access the general curriculum:</p>
+    <div class="plan-card-grid">
+      <div class="plan-card">
+        <h4>Special Education</h4>
+        <p>Specially designed instruction to meet your child's unique needs &mdash; a different curriculum, the same curriculum with adaptations, or both. It's a service, not a place.</p>
+      </div>
+      <div class="plan-card">
+        <h4>Related Services</h4>
+        <p>Speech-language therapy, occupational or physical therapy, counseling, transportation, and more &mdash; whatever your child needs to benefit from special education.</p>
+      </div>
+      <div class="plan-card">
+        <h4>Supplementary Aids &amp; Services</h4>
+        <p>Supports that let your child learn alongside nondisabled peers: adapted equipment, a one-on-one aide, assistive technology, staff training.</p>
+      </div>
+      <div class="plan-card">
+        <h4>Accommodations &amp; Modifications</h4>
+        <p>Changes to how your child accesses instruction (extra time, audiobooks, oral responses) or, when needed, to what's actually being taught.</p>
+      </div>
+      <div class="plan-card">
+        <h4>Program Modifications for Staff</h4>
+        <p>Training or support for the adults working with your child &mdash; so the plan doesn't depend on one teacher already happening to know what to do.</p>
+      </div>
+    </div>
+    <p>Every service must state exactly when it happens (dates), how often (frequency), how long each session runs (duration), and where. Vague language like "as needed" isn't a real service commitment.</p>
+
+    <details class="breakpoint-flag">
+      <summary class="breakpoint-flag__summary"><span class="breakpoint-flag__icon" aria-hidden="true">&#9888;</span> Real breakpoint: "we don't have the staff" as a denial</summary>
+      <div class="breakpoint-flag__body">
+        <p>A real, documented pattern: a school agreeing a service is needed, then declining to actually provide it by citing staffing or resource limits rather than addressing it through the proper process. The need being identified doesn't disappear because of a staffing shortage &mdash; "we don't have the staff for that" is an operational excuse, not a legal answer.</p>
+        <p class="breakpoint-flag__source">See the real account on <a href="simulated.html">Simulated</a>.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="placement" class="playbook-section">
+    <h2>Placement &amp; Least Restrictive Environment (LRE)</h2>
+    <p>Placement is where your child's IEP is actually carried out. IDEA requires that children with disabilities be educated with nondisabled peers "to the maximum extent appropriate" &mdash; removal to a separate class or school is only justified if the nature or severity of the disability means education in a regular class, even with supports, "cannot be achieved satisfactorily." If your child is removed from general education for any part of the day, the IEP must explain why.</p>
+    <p>Placement decisions must be based on your child's individual needs &mdash; not their disability label, what staff happen to be available, or district convenience. You have the right to be part of that decision, the same as any other IEP team member.</p>
+    <p class="aside-note">This project's real-case research (Cited) deliberately doesn't cover LRE and placement disputes &mdash; they're a genuinely different, methodology-heavy area of law, tracked separately in this project's roadmap rather than folded in here. That's why there's no breakpoint flag on this module: not because problems don't happen, just that this project doesn't have verified case evidence for it yet.</p>
+  </section>
+
+  <section id="assessments" class="playbook-section">
+    <h2>State &amp; District Assessments</h2>
+    <p>Students with disabilities take the same state and district-wide assessments as their peers, with accommodations as needed (extra time, a different setting, questions read aloud, and similar) &mdash; the IEP team decides what your child needs. If even accommodated testing isn't appropriate, your child can take an alternate assessment instead, but the IEP must explain both why the regular assessment doesn't work and why the specific alternate one was chosen.</p>
+  </section>
+
+  <section id="transition" class="playbook-section">
+    <h2>Transition Services &amp; Age of Majority</h2>
+    <h3>Transition Services</h3>
+    <p>By the IEP in effect when your child turns 16 (earlier, if the team decides), the IEP must include measurable postsecondary goals &mdash; education, employment, independent living &mdash; and the specific services and coursework that will help reach them. Your child must be invited to this planning.</p>
+    <h3>Age of Majority</h3>
+    <p>At the legal age of adulthood, some or all educational decision-making rights may transfer from you to your child. This varies by state, and not every state transfers every right. You must receive written notice at least a year before it happens.</p>
+    <table class="plan-table">
+      <thead><tr><th>State(s)</th><th>Age of majority for education rights</th></tr></thead>
+      <tbody>
+        <tr><td>Most states</td><td>18</td></tr>
+        <tr><td>Alabama, Nebraska</td><td>19</td></tr>
+        <tr><td>Mississippi</td><td>21</td></tr>
+        <tr><td>Pennsylvania</td><td>21 (specifically for education purposes)</td></tr>
+      </tbody>
+    </table>
+    <p class="aside-note">Check your own state's specific rule rather than assuming 18 &mdash; several states differ, and some states have procedures for parents to continue representing a young adult's educational interests under certain circumstances (guardianship, or the individual being unable to give informed consent).</p>
+  </section>
+
+  <div id="meeting-resource" class="meeting-resource-intro">
+    <h2>Meeting Resource</h2>
+    <p>The content above is about the IEP <em>document</em>. This part is about the <em>meeting</em> where it gets discussed &mdash; practical prep for an IEP meeting, structured the way most parent guides already are, with real cited cases and real accounts woven in at the points where those specific failures tend to happen.</p>
+    <nav class="playbook-toc playbook-toc--nested" aria-label="Meeting resource table of contents">
+      <a href="#before">Before the Meeting</a>
+      <a href="#during">During the Meeting</a>
+      <a href="#after">After the Meeting</a>
+      <a href="#disagree">If You Disagree</a>
+    </nav>
+  </div>
 
   <section id="before" class="playbook-section">
     <h2>Before the Meeting</h2>

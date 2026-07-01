@@ -36,7 +36,9 @@ data.js / simulated-data.js  (the canonical datasets)
         │
         ├─► Cited page, Simulated page (live stats, growth tracking*)
         ├─► Landing page (live stats + random real-quote widget)
-        └─► Playbook (hand-synced callouts, not yet live — known gap)
+        └─► Playbook: Meeting Resource callouts (hand-synced, not yet live —
+            known gap) + "The IEP Document" (independently-researched guide
+            content, not pulled from the pipeline at all — see Phase 1l)
         │
         ▼
 (not yet built) AI-consumable export → personalized family tool
@@ -55,7 +57,7 @@ data.js / simulated-data.js  (the canonical datasets)
 | **Home** (`index.html`) | Landing page: a real quote pulled live from Simulated ("Show another" cycles all of them), then three cards into the tracks below | Card stats computed live from `data.js`/`simulated-data.js` |
 | **Simulated** (`simulated.html`) — primary evidence tier | 10 real pain points, 15 real sources, 10 categories | Scheduled ingestion (monthly) + growth counter, recent-added feed, NEW badges |
 | **Cited** (`cited.html`) — secondary evidence tier | 15 real adjudicated cases, 11 categories (4 categories now have 2 real cases each, live via the case-switcher UI) | Scheduled ingestion (monthly) — growth-tracking UI not built yet |
-| **Playbook** (`playbook.html`) | 16 sourced callouts across 4 phases (Before/During/After/If You Disagree), benchmarked against real existing IEP guides | Hand-authored, not yet synced live to the two datasets |
+| **Playbook** (`playbook.html`) | Primary content: "The IEP Document" — 9 modules on building a good IEP, 3 with real breakpoint flags. Demoted: "Meeting Resource" — the original 16 sourced callouts across 4 phases, unchanged | Hand-authored, not yet synced live to the two datasets |
 
 Full build-by-build detail, every source, and every design decision behind each phase is in "Build history" below — this table is just the current snapshot.
 
@@ -66,14 +68,14 @@ Organized against the mission's three clauses, not just a flat backlog.
 ### Toward a coherent, end-to-end pipeline
 
 - **Cited-side growth tracking** — Phase 1e's growth counter, recent feed, and NEW badges only exist on Simulated. Cited has its own ingestion pipeline now (Phase 1h), so this is just unbuilt UI, not blocked on anything structural.
-- **Keep the Playbook's callouts in sync with the datasets** — the 16 callouts are hand-authored HTML, not pulled live from `data.js`/`simulated-data.js`. Both ingestion runbooks now include a Playbook-sync check as their last step (Phase 1h), which surfaces *candidates* for new callouts — but adding them is still a manual step after that.
+- **Keep the Meeting Resource's callouts in sync with the datasets** — its 16 callouts are hand-authored HTML, not pulled live from `data.js`/`simulated-data.js`. Both ingestion runbooks now include a Playbook-sync check as their last step (Phase 1h), which surfaces *candidates* for new callouts — but adding them is still a manual step after that. (This doesn't apply to "The IEP Document" primary content added in Phase 1l — that's independently-researched guide content, not dataset-sourced callouts, so there's nothing to sync there; its 3 breakpoint flags are hand-tied to specific dataset entries and would need manual review if those entries ever changed.)
 - **Cross-link Cited and Simulated** — link a Simulated pain point to its Cited counterpart when it's clearly a lower-stakes version of the same underlying issue. Deferred until both tracks have enough content that the connections are genuine, not reached-for.
 - **AI-consumable dataset export** *(next priority)* — a clean, documented, properly-licensed JSON/CSV export of Cited + Simulated. Also the natural data source for the personalized prep-sheet below, so it's sequenced before that, not after.
 
 ### Toward continuously, systematically improving the IEP process
 
 - **Fill the known case-law gap, then keep growing every category** — five original safeguard categories never got real case-law backing. As of Phase 1k, three are filled (Understandable Language, Independent Educational Evaluation, Records Access); Confidentiality and standalone Informed Consent remain open (see `CITED-INGESTION-RUNBOOK.md`'s "Known gap" section for what's been tried and ruled out). Every scheduled scan actively checks for these first. Beyond that, the goal isn't "one case per category and done" — as of Phase 1i the site supports multiple real cases per category with a case-switcher UI, and four categories (stayput, child-find, understandable-language, iee) now actually have a second real case live. Target is roughly 2-3 real cases per category over time, gaps prioritized first.
-- **Plan / document quality track (Phase 2)** — a second dimension entirely: is the *written IEP* any good (measurable goals, present-levels-to-goals alignment, services matched to needs), not just whether the *meeting* was run fairly. Needs different sources than case law — published IEP-quality rubrics and real weak-goal/strong-goal pairs from teacher-training material.
+- **Plan / document quality track (Phase 2)** — a second dimension entirely: is the *written IEP* any good (measurable goals, present-levels-to-goals alignment, services matched to needs), not just whether the *meeting* was run fairly. Phase 1l took the first real step — Playbook's primary content is now a full guide to the IEP document itself, with 3 of 9 modules carrying real breakpoint flags (Goals, Present Levels, Services & Supports). Still needs different sources than case law to fill the rest: published IEP-quality rubrics and real weak-goal/strong-goal pairs from teacher-training material, specifically for Accommodations, Assessments, Transition, and Age of Majority. Placement/LRE is intentionally excluded (see Phase 1l), not a gap to fill.
 - **Legal domains deliberately excluded from the process track, kept for later (possibly their own tracks):** FAPE standard (*Endrew F. v. Douglas County*, *Rowley*), LRE/methodology disputes (*M.C. v. Antelope Valley*, *G. v. Fort Bragg*), related services (*Irving ISD v. Tatro*, *Cedar Rapids v. Garret F.*), restraint/seclusion/abuse (*HH v. Moffett*, *Connecticut OPA v. Hartford*), Section 504/ADA overlap (*Fry v. Napoleon*, *KM v. Tustin*), attorneys' fees (*Arlington Central SD v. Murphy*).
 - **Regenerating / multi-tone simulations** — not just 2-3 alternate scripted dramatizations per condition, but a real spread of different tones/communication styles (blunt/direct vs. diplomatic vs. clinical/formal vs. plain conversational), so a reader who doesn't connect with the first dramatization might connect with a differently-toned one. Wanted for all pain points eventually. Blocked on: live in-browser regeneration needs either an exposed API key (real abuse/cost risk on a public site) or a backend proxy — the realistic path is pre-authoring multiple tone variants during ingestion/review, same human-gated process as everything else, built for new pain points going forward and backfilled later rather than all at once.
 
@@ -350,6 +352,22 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 **Still open:** Confidentiality (hearing/court-sourced), standalone Informed Consent, and second cases for predetermination, missing-member, due-process, retaliation, and burden-of-proof.
 </details>
 
+<details>
+<summary>Phase 1l — built (Playbook rebuilt around "The IEP Document," first real step toward Phase 2)</summary>
+
+**Why:** the user found `parentcenterhub.org/pa12` ("Developing Your Child's IEP") as the strongest comparable resource anywhere — dense and comprehensive, but a visual-free wall of text with no data behind it. They wanted something at that depth, on this site, checked against current sources, more readable, and threaded through with real evidence where it genuinely applies — while keeping the existing Playbook content intact rather than deleting it.
+
+**Research done before building anything:** fetched pa12 in full, then independently verified its load-bearing claims against eCFR.gov and other current sources rather than assuming a 2023-dated guide was still accurate. Found: all four core federal timelines (30-day IEP meeting, triennial reevaluation, 15-day resolution window, age-16 transition trigger) are still current, no fixes needed. Age of majority and ESY eligibility both genuinely vary by state — kept explicit rather than defaulting to one number. Surfaced one genuinely new post-2023 item worth a small mention: responsible-use norms for AI-assisted goal drafting. Also found the actual redundancy in pa12: roughly half of it re-covers meeting logistics/timeline, which — given the structural decision below — the existing Playbook content already handles.
+
+**What was built:** `playbook.html` restructured into two parts —
+- **Primary content, "The IEP Document"** (new): a 10-required-parts overview using a numbered flowchart component (`.process-flow`), then modules on Present Levels, Annual Goals, Measuring Progress, Services & Supports, Placement & LRE, Assessments, and Transition & Age of Majority — deliberately *not* re-covering meeting timeline, since that's the demoted section's job. One running hypothetical example (a 5th grader, "Jordan") threads through Present Levels → Goals → Progress for concreteness, visually distinct from sourced content via a dashed-border `.example-box`, always tagged "Illustrative example" — never mixed with real evidence.
+- **Demoted, "Meeting Resource"** (unchanged): the original 16 sourced callouts across the original 4 phases (Before/During/After/If You Disagree), moved verbatim to the bottom of the page under a new intro.
+
+**Breakpoint flags — exactly 3, not decorative:** cross-referenced every new module against `data.js`/`simulated-data.js` and found real evidentiary backing for only 3 of 9: Annual Goals ↔ Simulated's `ableist-goals` (goals targeting masking, not real needs — the strongest match found), Present Levels ↔ Simulated's `records` + Cited's `records-access-amandaj`, Services & Supports ↔ Simulated's `resource-excuse`. The other 6 modules (accommodations, placement/LRE, assessments, transition, age of majority) get no flag — stated as an honest gap, not hidden, and Placement/LRE explicitly notes it's outside Cited's deliberate scope rather than an oversight. New `.breakpoint-flag` component (a `<details>` disclosure, no new JS) makes this legible without cluttering the page for readers who don't need to expand it.
+
+**This is a first step toward the Roadmap's "Plan/document quality track (Phase 2)," not Phase 2 completed** — see the updated Roadmap bullet below for what's still missing.
+</details>
+
 ## Sources
 
 **Phase 1a (superseded):**
@@ -393,7 +411,12 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 - Anthropic, [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) — orchestrator-worker pattern, evaluation strategy, compound-error warnings
 - Babel Street, [Three Guiding Principles for the Development of OSINT Agentic Systems](https://www.babelstreet.com/blog/designing-trustworthy-ai-for-osint) — Understand Intent, Transparency, Human-in-the-Loop
 
-**Playbook backbone research:** COPAA, Wrightslaw, Understood.org, A Day in Our Shoes, The Intentional IEP (see Phase 1f in Build History for links).
+**Playbook backbone research (Meeting Resource, Phase 1f):** COPAA, Wrightslaw, Understood.org, A Day in Our Shoes, The Intentional IEP (see Phase 1f in Build History for links).
+
+**"The IEP Document" research (Phase 1l):**
+- Center for Parent Information and Resources, [Developing Your Child's IEP (pa12)](https://www.parentcenterhub.org/pa12/) — the structural benchmark; dated "Updated 8/2023," independently re-verified rather than assumed current
+- eCFR.gov, current [34 CFR Part 300](https://www.ecfr.gov/current/title-34/subtitle-B/chapter-III/part-300) — used to verify pa12's four load-bearing timelines (§300.323(c)(1), §300.303, §300.510, §300.320) are still accurate
+- Age-of-majority and extended-school-year state-variance figures cross-checked against current state Department of Education sources rather than treated as a single national number
 
 ## Disclaimer
 
@@ -401,6 +424,6 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 
 **Simulated** is a different evidence tier by design: real accounts (plus aggregate/academic sources) of everyday IEP-meeting friction, not adjudicated cases. Pattern summaries and takeaways are grounded directly in those real accounts. Individual sources are currently de-identified (see "Roadmap" and `OUTREACH-NOTES.md`); the per-condition dramatizations are simulated extrapolations from real patterns, not documented events, and are labeled as such on the page.
 
-**Playbook** structure is benchmarked against real existing guides; general guidance outside its callout boxes is synthesized best practice, not from this project's own dataset. The callouts themselves are tagged by evidence tier (Real Case / Real Account / Research) so a reader always knows which kind of claim they're reading.
+**Playbook** is two parts, as of Phase 1l. **"The IEP Document"** (primary content) is a guide to building a genuinely good IEP document, benchmarked against CPIR's `pa12` guide and independently verified against current federal regulations (34 CFR Part 300, checked July 2026) — general guidance there is synthesized best practice, not from this project's own dataset, except where a **breakpoint flag** (&#9888;) marks a specific step this project has real Cited/Simulated evidence for (3 of 9 modules; the rest are an honest gap, not a claim nothing goes wrong there). Anything tagged **Illustrative example** is hypothetical, invented for clarity, and never sourced fact. **"Meeting Resource"** (demoted, at the bottom of the page) is the original Playbook content: structure benchmarked against real existing guides, with its 16 callouts tagged by evidence tier (Real Case / Real Account / Research) so a reader always knows which kind of claim they're reading.
 
 Phase 1a's transcripts (superseded) were fully invented composites with no case-law grounding at all — kept in Build History for continuity, not part of the live product.
