@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEP Process Simulator &mdash; Simulated</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="site-nav__brand">IEP Process Simulator</a>
+  <span class="site-nav__links">
+    <a href="simulated.html" class="site-nav__link active">Simulated</a>
+    <a href="cited.html" class="site-nav__link">Cited</a>
+    <a href="playbook.html" class="site-nav__link">Playbook</a>
+  </span>
+</nav>
+
+<header class="site-header">
+  <h1>Simulated Pain Points</h1>
+  <p class="subtitle">Real parent and community accounts of what breaks in IEP meetings &mdash; the primary, everyday evidence tier of this project, alongside <a href="cited.html">Cited</a>'s rarer high-stakes court cases &mdash; used as seeds for simulated runs across three conditions, to look for which conditions most often produce a breakdown.</p>
+</header>
+
+<div class="disclaimer">
+  <strong>This is a different evidence tier than Cited.</strong> The quotes below are real, verbatim, and drawn from real people's own accounts (blogs, essays, one aggregated community piece), not adjudicated court cases. Individual sources are currently de-identified &mdash; shared personal accounts, quoted without the original author's knowledge, pending direct outreach for permission &mdash; so names and links are withheld for now rather than assumed. The dramatized runs are simulated extrapolations from those real patterns, not documented events. See README.md for full sourcing and validation notes.
+</div>
+
+<div class="growth-section">
+  <div id="growth-bar" class="growth-bar"></div>
+  <div id="recent-feed" class="recent-feed"></div>
+</div>
+
+<main>
+  <section class="grid-section">
+    <h2>Where each pattern tends to break, by condition</h2>
+    <p class="section-note">Each pain point below is real and sourced. Each column is a simulated run of that same pattern under a different condition. Click a cell to jump to that exact run.</p>
+    <div id="sim-grid" class="grid"></div>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch outcome-resolved"></span> Resolves well</span>
+      <span class="legend-item"><span class="swatch outcome-partial"></span> Partial</span>
+      <span class="legend-item"><span class="swatch outcome-breakdown"></span> Breaks down</span>
+    </div>
+  </section>
+
+  <div class="layout">
+    <nav id="pain-point-list" class="episode-list"></nav>
+    <section class="episode-detail">
+      <div id="condition-tabs" class="tabs"></div>
+      <div id="pain-point-detail" class="case-file"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>Full source list, validation notes, and project status in <a href="README.md" target="_blank" rel="noopener">README.md</a>.</p>
+</footer>
+
+<script src="simulated-data.js"></script>
+<script src="simulated-app.js"></script>
+</body>
+</html>

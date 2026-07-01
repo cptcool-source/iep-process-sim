@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEP Process Simulator &mdash; Cited</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="site-nav__brand">IEP Process Simulator</a>
+  <span class="site-nav__links">
+    <a href="simulated.html" class="site-nav__link">Simulated</a>
+    <a href="cited.html" class="site-nav__link active">Cited</a>
+    <a href="playbook.html" class="site-nav__link">Playbook</a>
+  </span>
+</nav>
+
+<header class="site-header">
+  <h1>Cited</h1>
+  <p class="subtitle">Real, adjudicated IDEA case law on how the IEP process breaks &mdash; the secondary, high-stakes-but-rare evidence tier alongside <a href="simulated.html">Simulated</a>'s everyday real accounts. Browsable as raw case files, or as a dramatized reenactment. Same underlying data, two views.</p>
+</header>
+
+<div class="disclaimer">
+  <strong>The case facts and legal holdings below are real and cited.</strong> The "Reenactment" view dramatizes those facts with invented names and dialogue for readability &mdash; it is not a transcript of any real meeting. See README.md for full sourcing.
+</div>
+
+<main>
+  <div class="toolbar">
+    <div class="view-toggle">
+      <button id="view-case-file" class="view-btn active">Case File</button>
+      <button id="view-simulated-meeting" class="view-btn">Reenactment</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav id="episode-list" class="episode-list"></nav>
+    <section id="episode-detail" class="episode-detail"></section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>Full source list and project status in <a href="README.md" target="_blank" rel="noopener">README.md</a>.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEP Process Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="site-nav__brand">IEP Process Simulator</a>
+  <span class="site-nav__links">
+    <a href="simulated.html" class="site-nav__link">Simulated</a>
+    <a href="cited.html" class="site-nav__link">Cited</a>
+    <a href="playbook.html" class="site-nav__link">Playbook</a>
+  </span>
+</nav>
+
+<header class="site-header">
+  <h1>IEP Process Simulator</h1>
+  <p class="subtitle">Real evidence on how the IEP process breaks, and a real playbook for avoiding it &mdash; built from everyday family accounts first, rare court cases second, and a practical guide that cites both.</p>
+</header>
+
+<section class="quote-widget" aria-label="Featured real quote">
+  <p class="quote-widget__label">A real account from the Simulated dataset</p>
+  <blockquote id="quote-text" class="quote-widget__quote">Loading&hellip;</blockquote>
+  <p id="quote-source" class="quote-widget__source"></p>
+  <button id="quote-refresh" class="quote-widget__refresh">Show another</button>
+</section>
+
+<main class="landing">
+  <div class="track-cards">
+
+    <a href="simulated.html" class="track-card track-card--primary">
+      <span class="track-card__eyebrow">Primary evidence tier</span>
+      <h2>Simulated</h2>
+      <p>Real parent and community accounts of everyday IEP-meeting friction &mdash; the common, low-stakes-to-report tier this project centers on. Used as seeds for simulated runs across three conditions, to find which conditions most often produce a breakdown.</p>
+      <p id="simulated-stats" class="track-card__stats">Loading stats&hellip;</p>
+      <span class="track-card__cta">Explore Simulated &rarr;</span>
+    </a>
+
+    <a href="cited.html" class="track-card track-card--secondary">
+      <span class="track-card__eyebrow">Secondary evidence tier</span>
+      <h2>Cited</h2>
+      <p>Real, adjudicated IDEA case law &mdash; high-stakes, low-volume: the failures severe enough that a family litigated and a court ruled. Rarer than what Simulated documents, but legally definitive.</p>
+      <p id="cited-stats" class="track-card__stats">Loading stats&hellip;</p>
+      <span class="track-card__cta">Explore Cited &rarr;</span>
+    </a>
+
+    <a href="playbook.html" class="track-card track-card--tertiary">
+      <span class="track-card__eyebrow">Practical guide</span>
+      <h2>Playbook</h2>
+      <p>A parent/family-facing guide to preparing for and navigating an IEP meeting, structured like the guides you've probably already seen &mdash; with Cited's and Simulated's own findings woven in as sourced callouts at the exact points those failures tend to happen.</p>
+      <p class="track-card__stats">16 sourced callouts across 4 phases: Before, During, After, If You Disagree</p>
+      <span class="track-card__cta">Open the Playbook &rarr;</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>Full source list and project status in <a href="README.md" target="_blank" rel="noopener">README.md</a>.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="simulated-data.js"></script>
+<script src="landing-app.js"></script>
+</body>
+</html>
