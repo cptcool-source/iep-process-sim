@@ -48,7 +48,14 @@ this file is what the scheduled agent actually follows each time it fires.
 4. **Write candidates to `cited-pending-review.md`** — never directly to
    `data.js`. Nothing merges without explicit approval. (Simulated's queue
    is `pending-review.md` — kept as a separate file so the two tracks' scans
-   never collide or get merged into the wrong dataset by mistake.)
+   never collide or get merged into the wrong dataset by mistake.) Insert new
+   candidates directly below the `<!-- New candidates... -->` placement
+   comment near the top of the file (above all existing history) —
+   newest scan's candidates always go at the top of the active queue, not
+   appended after old history. Then update the queue status banner
+   (`> **Queue status: ...`) at the very top of the file: state how many
+   entries now need review (or "Queue is empty" if none), and update the
+   "Last updated" date.
 5. **Stop and wait.** The human reviewer (Charles) reads
    `cited-pending-review.md` and replies per-candidate: approve,
    approve-with-edits, or reject. Only approved candidates get merged into
@@ -168,8 +175,14 @@ downloads, not just a search page.
 1. Add the approved entry to `data.js` in the existing schema (`CATEGORIES`/
    `CATEGORY_DESCRIPTIONS` if it's a new category, then the episode itself
    in `EPISODES`).
-2. Delete the approved block from `cited-pending-review.md`, leaving only
-   still-pending or flagged-out-of-scope entries for the record.
+2. Move the resolved candidate (approved or rejected, with a one-line reason)
+   out of the active queue and into a new dated entry at the **end** of the
+   file's history section — after all existing history, continuing the
+   file's chronological (oldest-first) record. Do not delete resolved
+   entries; archive them, matching how every prior resolved batch in this
+   file is recorded. Then update the queue status banner at the top of the
+   file: recompute how many entries still need review (or set it to "Queue
+   is empty"), and update the "Last updated" date.
 3. If Cited's growth-tracking fields (Phase 1e-equivalent, once built for
    Cited) exist by the time this runs, set the new episode's `date_added`.
 

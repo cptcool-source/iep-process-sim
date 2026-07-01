@@ -392,6 +392,16 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 **Full-page cohesion recheck:** re-read the entire rebuilt page end to end per the user's request — confirmed no duplicate HTML ids, all tags balanced, all 9 `.aside-note` additions correctly left the `.breakpoint-flag` count at exactly 3 (nothing new was misrepresented as dataset-backed evidence), and no contradictions between the new state-variance content and existing content (e.g., the age-of-majority table and the new signature-requirement note cite different states for different reasons, without conflating them).
 </details>
 
+<details>
+<summary>Phase 1n — built (queue status banner + reordering for both pending-review files)</summary>
+
+**Why:** both `pending-review.md` and `cited-pending-review.md` had grown long enough across several rounds of scans that checking queue status meant scrolling to the bottom — the opposite of what a "can I glance and know what needs my attention" file should do.
+
+**What was built:** a `> **Queue status: ...**` banner directly under each file's title, stating either "Queue is empty" or how many entries need review, plus a "Last updated" date — no scrolling required to check status. A `<!-- New candidates... -->` placement comment marks exactly where the next scan's candidates should be inserted (directly below the banner, above all existing history), so future scans always add new unresolved candidates at the top of the active queue. Historical sections (Resolved, Not Found, hallucination log, etc.) deliberately keep their existing chronological, oldest-first order rather than being reversed — reordering an archive doesn't reduce scrolling, since you only visit it when you actually want the history. Resolved batches continue to be *archived* at the end of the history section (never deleted), matching the pattern already established across every round so far.
+
+Both `INGESTION-RUNBOOK.md` and `CITED-INGESTION-RUNBOOK.md` updated (their "Write candidates" and "After approval" steps) so this structure is self-maintaining on every future scan, not a one-time cleanup that goes stale.
+</details>
+
 ## Sources
 
 **Phase 1a (superseded):**
