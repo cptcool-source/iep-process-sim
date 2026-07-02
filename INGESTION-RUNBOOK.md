@@ -92,3 +92,6 @@ Each candidate gets a block:
    file is recorded. Then update the queue status banner at the top of the
    file: recompute how many entries still need review (or set it to "Queue
    is empty"), and update the "Last updated" date.
+4. Regenerate the AI-consumable export so it stays in sync with the
+   dataset: `node tools/build-export.mjs`, and commit the updated `export/`
+   files alongside the `simulated-data.js` change (see `export/README.md`).
