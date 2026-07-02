@@ -56,8 +56,8 @@ data.js / simulated-data.js  (the canonical datasets)
 |---|---|---|
 | **Home** (`index.html`) | Landing page: a real quote pulled live from Simulated ("Show another" cycles all of them), then three cards into the tracks below | Card stats computed live from `data.js`/`simulated-data.js` |
 | **Simulated** (`simulated.html`) — primary evidence tier | 10 real pain points, 15 real sources, 10 categories | Scheduled ingestion (monthly) + growth counter, recent-added feed, NEW badges |
-| **Cited** (`cited.html`) — secondary evidence tier | 15 real adjudicated cases, 11 categories (4 categories now have 2 real cases each, live via the case-switcher UI) | Scheduled ingestion (monthly) — growth-tracking UI not built yet |
-| **Playbook** (`playbook.html`) | Primary content: "The IEP Document" — 9 modules (eligibility through transition/age of majority) on building a good IEP, 3 with real breakpoint flags, checked against current federal regs and a third-party comparison packet (Phase 1m). Demoted: "Meeting Resource" — the original 16 sourced callouts across 4 phases, unchanged | Hand-authored, not yet synced live to the two datasets |
+| **Cited** (`cited.html`) — secondary evidence tier | 15 real adjudicated cases, 11 categories (4 categories now have 2 real cases each, live via the case-switcher UI); full-dataset accuracy audit completed Phase 1p — 6 of 15 had citation/fact errors, all corrected, none were outright fabrications | Scheduled ingestion (monthly) — growth-tracking UI not built yet |
+| **Playbook** (`playbook.html`) | Primary content: "The IEP Document" — 9 modules (eligibility through transition/age of majority) on building a good IEP, with real breakpoint flags on present levels (2: records access, IEE), goals, and services, checked against current federal regs and a third-party comparison packet (Phase 1m). Demoted: "Meeting Resource" — 17 sourced callouts across 4 phases (added Understandable Language, Phase 1o) | Hand-authored, synced against both datasets as of Phase 1o |
 
 Full build-by-build detail, every source, and every design decision behind each phase is in "Build history" below — this table is just the current snapshot.
 
@@ -400,6 +400,41 @@ Notification config: email only (`bspivey212@gmail.com`) — push was tried firs
 **What was built:** a `> **Queue status: ...**` banner directly under each file's title, stating either "Queue is empty" or how many entries need review, plus a "Last updated" date — no scrolling required to check status. A `<!-- New candidates... -->` placement comment marks exactly where the next scan's candidates should be inserted (directly below the banner, above all existing history), so future scans always add new unresolved candidates at the top of the active queue. Historical sections (Resolved, Not Found, hallucination log, etc.) deliberately keep their existing chronological, oldest-first order rather than being reversed — reordering an archive doesn't reduce scrolling, since you only visit it when you actually want the history. Resolved batches continue to be *archived* at the end of the history section (never deleted), matching the pattern already established across every round so far.
 
 Both `INGESTION-RUNBOOK.md` and `CITED-INGESTION-RUNBOOK.md` updated (their "Write candidates" and "After approval" steps) so this structure is self-maintaining on every future scan, not a one-time cleanup that goes stale.
+</details>
+
+<details>
+<summary>Phase 1o — built (closed the Playbook-sync gap: Understandable Language + IEE)</summary>
+
+**Why:** rounds 1 and 2 of Cited ingestion approved two new categories &mdash; `understandable-language` (Bellflower, Chicago) and `iee` (Y.C.Q., Alta Loma) &mdash; but neither had ever been woven into `playbook.html`. This was the "known gap" the snapshot table had been flagging since Phase 1l: real, verified evidence sitting in `data.js` with no corresponding callout on the page.
+
+**What was built** (both in `playbook.html`, done live in-session rather than routed through `cited-pending-review.md`, since the user was reviewing directly rather than an unattended scan):
+- **IEE breakpoint flag**, in "The IEP Document" &rarr; Present Levels, right after the sentence introducing the right to request an IEE. Deliberately cites both the violation (Y.C.Q.) and the honored case (Alta Loma) side by side, rather than only the violation &mdash; consistent with this project's integrity stance of not cherry-picking only bad outcomes when a real contrasting case exists.
+- **Understandable Language callout**, in "Meeting Resource" &rarr; Before the Meeting, placed directly after the existing aggregate "Interpreter Access" research callout so the real-case evidence sits next to the general research it substantiates. Cites Bellflower (the single-family, informed-consent-turns-on-language case) rather than Chicago (the systemic class action), matching this project's established one-representative-case-per-callout pattern (see how Child Find and Stay Put each cite only their first case, despite having a second live on the case-switcher).
+
+Snapshot table and Cited/Simulated sync status updated to reflect this; no changes to `data.js` or `simulated-data.js`.
+</details>
+
+<details>
+<summary>Phase 1p — built (full-dataset accuracy audit of all 15 Cited cases)</summary>
+
+**Why:** the user asked for a full verification pass on every case in `data.js`, checking none had been AI-hallucinated and that all were being presented accurately — the same rigor the ingestion runbooks require for new candidates (see "Verification discipline" in `CITED-INGESTION-RUNBOOK.md`), now applied retroactively to everything already merged.
+
+**Method:** four parallel research passes, one per group of 3-4 cases, each required to confirm every case against a primary source (the actual opinion/decision text, CourtListener, Justia, an official court/agency site) rather than a search-tool summary — never trusting a case as real on a secondary source's word alone.
+
+**Result: no case was fabricated.** All 15 genuinely exist, as cited courts/agencies, roughly the right years. But 6 of 15 had real accuracy problems, ranging from a wrong dollar figure to one case's outcome being described backwards:
+
+- **`due-process-jaynes`** — citation was too vague ("4th Cir. (2001)"); corrected to the actual unpublished-opinion cite, 13 Fed. Appx. 166 (4th Cir. 2001). The $117,979.78 figure was the *original* hearing officer's award, not the final court-ordered amount — the state review process and district court cut it to roughly $103,000 before the Fourth Circuit affirmed that reduced figure. Site was stating the larger, superseded number as if the district was ordered to pay it.
+- **`childfind-phyllene`** — facts claimed both the parent *and* the child's classroom teacher reported suspected hearing loss. The actual opinion shows only the parent reported it, twice (end of fifth grade, then again in the tenth-grade IEP meeting) — no teacher corroboration appears anywhere in the record. This was a fabricated detail, now removed from both the facts field and the dramatization.
+- **`iee-ycq`** — facts had the appellant backwards: the site said the district appealed to the Third Circuit; the real Third Circuit docket (No. 25-2788) shows the *family* is the appellant, challenging adverse district-court rulings after the district refused to comply with the hearing officer's order. Also corrected from being presented as resolved to noting it's still pending on appeal as of late 2025.
+- **`stayput-ridley`** — cited the wrong case entirely. 868 F.3d 218 (3d Cir. 2017) is a real Ridley opinion, but about attorney's fees for a stay-put win, not the stay-put-through-appeals holding described. The facts as written actually match an earlier opinion in the same underlying dispute, M.R. v. Ridley School District, 744 F.3d 112 (3d Cir. 2014) — citation and URL corrected to that case.
+- **`childfind-matula`** — facts said the pattern of requests happened "before her son entered first grade"; the opinion shows one pre-enrollment meeting followed by the actual repeated, documented requests spanning his first and second grade years (1991-1993). Corrected the timeline, and added a caveat that the case's Section 1983 damages holding was later abrogated by A.W. v. Jersey City Public Schools (3d Cir. 2007) — Section 504 damages remain available, Section 1983 no longer does in this circuit.
+- **`iee-altaloma`** (the serious one) — the site described this as the "flip side" of Y.C.Q.: a district that responded to an IEE request correctly, tagged `status: "honored"`. The actual document at the cited URL — OAH's 2019 decision *after a federal district court partially reversed* the original 2018 ruling — holds the opposite: the district's 84-day delay in disclosing that the evaluator's rate exceeded its cost criteria was itself found to be a substantive FAPE denial. The site had described the superseded, district-favorable 2018 decision while linking to and citing the 2019 reversal-on-remand decision that reached the opposite conclusion. Facts, rule, takeaway, severity (low &rarr; medium), and the dramatization's tag (`honored` &rarr; `violated`) were all rewritten to match what the cited document actually holds.
+
+**Also fixed:** the IEE breakpoint flag added to `playbook.html` in Phase 1o was built on the now-corrected Alta Loma framing (`present-levels` section, presenting Y.C.Q. and Alta Loma as violation-vs-honored contrast) — rewritten to reflect that both are violations, just different mechanisms (outright refusal vs. undisclosed delay).
+
+**Not corrected, left as-is:** `retaliation-ac`'s facts call the principal's DCS reports "false child-abuse allegations" — technically the Sixth Circuit reversed summary judgment (a jury *could* find them false), not a final finding of falsity, but this is a fair plain-language summary of what the trial record showed, not a misstatement worth flagging as an error.
+
+Four Justia.com URLs (Burlington, Phyllene W., Amanda J., Schaffer) returned 403s to automated verification tools but are correctly indexed under their exact titles in live search results — treated as working, not broken; Cornell LII/govinfo.gov equivalents were identified as backups if link rot is ever confirmed.
 </details>
 
 ## Sources
