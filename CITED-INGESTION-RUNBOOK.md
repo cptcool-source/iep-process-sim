@@ -185,6 +185,9 @@ downloads, not just a search page.
    is empty"), and update the "Last updated" date.
 3. If Cited's growth-tracking fields (Phase 1e-equivalent, once built for
    Cited) exist by the time this runs, set the new episode's `date_added`.
+4. Regenerate the AI-consumable export so it stays in sync with the
+   dataset: `node tools/build-export.mjs`, and commit the updated `export/`
+   files alongside the `data.js` change (see `export/README.md`).
 
 ## Also check each scan: Playbook sync
 

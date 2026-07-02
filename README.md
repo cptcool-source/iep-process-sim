@@ -41,7 +41,11 @@ data.js / simulated-data.js  (the canonical datasets)
             content, not pulled from the pipeline at all — see Phase 1l)
         │
         ▼
-(not yet built) AI-consumable export → personalized family tool
+AI-consumable export (`export/*.json`, regenerated after each approved
+merge — see `export/README.md`)
+        │
+        ▼
+(not yet built) personalized family tool
 ```
 *Growth tracking currently exists on Simulated only — see "Roadmap."
 
@@ -70,7 +74,7 @@ Organized against the mission's three clauses, not just a flat backlog.
 - **Cited-side growth tracking** — Phase 1e's growth counter, recent feed, and NEW badges only exist on Simulated. Cited has its own ingestion pipeline now (Phase 1h), so this is just unbuilt UI, not blocked on anything structural.
 - **Keep the Meeting Resource's callouts in sync with the datasets** — its 16 callouts are hand-authored HTML, not pulled live from `data.js`/`simulated-data.js`. Both ingestion runbooks now include a Playbook-sync check as their last step (Phase 1h), which surfaces *candidates* for new callouts — but adding them is still a manual step after that. (This doesn't apply to "The IEP Document" primary content added in Phase 1l — that's independently-researched guide content, not dataset-sourced callouts, so there's nothing to sync there; its 3 breakpoint flags are hand-tied to specific dataset entries and would need manual review if those entries ever changed.)
 - **Cross-link Cited and Simulated** — link a Simulated pain point to its Cited counterpart when it's clearly a lower-stakes version of the same underlying issue. Deferred until both tracks have enough content that the connections are genuine, not reached-for.
-- **AI-consumable dataset export** *(next priority)* — a clean, documented, properly-licensed JSON/CSV export of Cited + Simulated. Also the natural data source for the personalized prep-sheet below, so it's sequenced before that, not after.
+- **AI-consumable dataset export** — a clean, documented, properly-licensed JSON/CSV export of Cited + Simulated. Also the natural data source for the personalized prep-sheet below, so it's sequenced before that, not after. *(Status: the JSON export now exists — `export/*.json`, generated from the canonical datasets by `tools/build-export.mjs`, schema documented in `export/README.md`, regenerate step added to both ingestion runbooks. The "properly-licensed" part and CSV remain open.)*
 
 ### Toward continuously, systematically improving the IEP process
 

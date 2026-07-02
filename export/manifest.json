@@ -1,0 +1,28 @@
+{
+  "name": "IEP Process Simulator — dataset export",
+  "schema_version": "1.0.0",
+  "source_repository": "https://github.com/cptcool-source/iep-process-sim",
+  "documentation": "https://github.com/cptcool-source/iep-process-sim/blob/main/export/README.md",
+  "license": "License not yet finalized — contact the repository maintainer before redistributing. Underlying court decisions are public record; editorial summaries, takeaways, and dramatizations are original to this project; verbatim quotes remain the work of their original authors.",
+  "evidence_tiers_note": "Cited and Simulated are deliberately separate files and separate evidence tiers. A consumer should never blend them without preserving which tier a claim came from. In both tiers, 'dramatization' dialogue is invented composite illustration, not quoted testimony; in Simulated, the 'runs' are simulated extrapolation, not evidence.",
+  "source_data_sha256": {
+    "data.js": "942b90cb2b642c2fcba7d2101b2fe26a5aaf28778fd8242bbed35a7179d66d69",
+    "simulated-data.js": "0f58067375a437a4fab7bda1bf32b32ccb638f04a4f4f37acfcc263040020582"
+  },
+  "files": {
+    "cited.json": {
+      "url": "https://raw.githubusercontent.com/cptcool-source/iep-process-sim/main/export/cited.json",
+      "tier": "cited",
+      "tier_description": "Real, adjudicated IDEA case law. Every episode is grounded in an actual court or administrative decision, with citation and source URL. Facts, rules, and holdings are real; dramatization dialogue is invented composite illustration of those real facts.",
+      "records": 15,
+      "categories": 11
+    },
+    "simulated.json": {
+      "url": "https://raw.githubusercontent.com/cptcool-source/iep-process-sim/main/export/simulated.json",
+      "tier": "simulated",
+      "tier_description": "Real parent/student/community accounts (verbatim quotes) that were never litigated, paired with simulated extrapolations ('runs') of each pattern under three standard conditions. The quotes are real evidence; the runs are illustrative simulation, not evidence.",
+      "records": 10,
+      "categories": 10
+    }
+  }
+}
